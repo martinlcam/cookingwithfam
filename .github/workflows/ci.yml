@@ -5,6 +5,10 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
     name: Lint, typecheck, build
@@ -24,3 +28,27 @@ jobs:
           name: dist
           path: dist
           retention-days: 3
+
+  deploy:
+    name: Deploy to Railway
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip if RAILWAY_TOKEN secret is not set
+        if: env.RAILWAY_TOKEN == ''
+        run: echo "::warning::RAILWAY_TOKEN not set; skipping deploy"
+      - uses: actions/setup-node@v4
+        if: env.RAILWAY_TOKEN != ''
+        with:
+          node-version: 22
+      - name: Install Railway CLI
+        if: env.RAILWAY_TOKEN != ''
+        run: npm i -g @railway/cli
+      - name: railway up
+        if: env.RAILWAY_TOKEN != ''
+        run: railway up --service web --environment production --ci

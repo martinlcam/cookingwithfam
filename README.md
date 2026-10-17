@@ -44,6 +44,16 @@ src/      Phaser. scenes/ are the app screens, minigames/ are the verbs
 
 ## Deploy
 
-Railway runs `npm ci && npm run build` then `npm run start` (see `railway.json`).
-Set `ANTHROPIC_API_KEY` in the service variables. Serverless sleep is on so it
-costs nothing idle on the Free plan.
+GitHub Actions deploys on every push to `main` after lint, typecheck, and
+build pass, by running `railway up` against the `web` service. Railway builds
+with Railpack and starts `npm run start` (see `railway.json`). Serverless sleep
+is on so it costs nothing idle on the Free plan.
+
+One-time setup: create a project token in Railway (Project → Settings →
+Tokens, environment `production`) and add it as the `RAILWAY_TOKEN` secret:
+
+```bash
+gh secret set RAILWAY_TOKEN
+```
+
+`ANTHROPIC_API_KEY` and `CLAUDE_MODEL` live in the Railway service variables.
