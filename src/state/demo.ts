@@ -32,6 +32,8 @@ export const DEMO_RECIPES: RecipeList = {
         { verb: "chop", item: "onion", params: { count: 6 }, caption: "Chop the onion" },
         { verb: "mince", item: "garlic", params: { count: 10 }, caption: "Mince the garlic" },
         { verb: "slice", item: "chicken", params: { count: 5 }, caption: "Slice the chicken" },
+        { verb: "peel", item: "potato", params: { count: 4 }, caption: "Peel the potato" },
+        { verb: "shred", item: "cabbage", params: { count: 6 }, caption: "Shred the cabbage" },
         { verb: "boil", item: "pasta", params: { seconds: 6 }, caption: "Boil the pasta" },
         { verb: "stir", item: "pan", params: { rotations: 6 }, caption: "Stir it all" },
         { verb: "plate", item: "plate", params: { count: 3 }, caption: "Plate it up" },
