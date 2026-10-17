@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import type { Step } from "@shared/schema";
 import { VERB_BY_NAME } from "@shared/verbs";
-import { text } from "../ui";
+import { bg, icon, panel, text, COLOR } from "../ui";
 
 /**
  * Every minigame extends this. It owns the countdown, the progress-to-score
@@ -28,7 +28,11 @@ export abstract class BaseMinigame extends Phaser.Scene {
 
   create() {
     this.game.events.emit("hud:reset");
-    text(this, 180, 30, this.step.caption.toUpperCase(), 9, "#c252e1");
+    bg(this, "bg_tile");
+    this.add.tileSprite(180, 500, 360, 280, "ui", "bg_counter").setDepth(-9);
+    this.add.tileSprite(180, 364, 360, 16, "ui", "counter_edge").setDepth(-9);
+    panel(this, 180, 34, 320, 44, "bubble");
+    text(this, 180, 34, this.step.caption.toUpperCase(), 9, COLOR.pink);
     this.setup();
   }
 
@@ -58,7 +62,15 @@ export abstract class BaseMinigame extends Phaser.Scene {
     if (this.done) return;
     this.done = true;
     const s = this.score();
-    text(this, 180, 320, s >= 85 ? "PERFECT!" : s >= 60 ? "GOOD" : "HMM...", 16, s >= 60 ? "#7bd88f" : "#e06c75");
+    const good = s >= 60;
+    panel(this, 180, 320, 240, 70, "panel").setDepth(50);
+    text(this, 180, 320, s >= 85 ? "PERFECT!" : good ? "GOOD" : "HMM...", 16, good ? COLOR.green : COLOR.pink).setDepth(51);
+    if (s >= 85) {
+      for (let i = 0; i < 6; i++) {
+        const sp = icon(this, 80 + Math.random() * 200, 290 + Math.random() * 60, "sparkle", 2).setDepth(52);
+        this.tweens.add({ targets: sp, scale: 0, y: sp.y - 30, duration: 500, delay: i * 60 });
+      }
+    }
     this.time.delayedCall(700, () => {
       this.scene.wake("Kitchen", { score: s });
       this.scene.stop();
