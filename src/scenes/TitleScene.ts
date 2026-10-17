@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { bg, button, floor, go, hero, icon, panel, text, view, COLOR } from "../ui";
+import { sfx } from "../sfx";
 import { resetRun } from "../state/store";
 
 export class TitleScene extends Phaser.Scene {
@@ -38,6 +39,15 @@ export class TitleScene extends Phaser.Scene {
       .setAlpha(0.9)
       .setInteractive({ useHandCursor: true })
       .on("pointerup", () => go(this, "Credits"));
+
+    // Sound toggle, top-left, remembered across sessions.
+    const soundLabel = () => (sfx.muted ? "sound: off" : "sound: on");
+    const snd = text(this, v.left + 8, v.top + 12, soundLabel(), 6, COLOR.cream, [0, 0.5]).setInteractive({ useHandCursor: true });
+    snd.on("pointerup", () => {
+      sfx.muted = !sfx.muted;
+      snd.setText(soundLabel());
+      if (!sfx.muted) sfx.play("confirm");
+    });
 
     button(this, 180, 330, "TAKE PHOTOS", () => go(this, "Pantry"), 260, 52, "pink", "camera");
     button(this, 180, 400, "LAST PANTRY", () => go(this, "Confirm", { useSaved: true }), 260, 48, "blue");

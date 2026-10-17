@@ -4,6 +4,7 @@ import { VERB_BY_NAME } from "@shared/verbs";
 import { dishSprite } from "../assets/food";
 import { run } from "../state/store";
 import { bg, floor, icon, panel, text, COLOR } from "../ui";
+import { sfx } from "../sfx";
 
 /**
  * Every minigame extends this. It owns the countdown, the progress-to-score
@@ -74,6 +75,7 @@ export abstract class BaseMinigame extends Phaser.Scene {
     this.done = true;
     const s = this.score();
     const good = s >= 60;
+    sfx.play(s >= 85 ? "perfect" : good ? "good" : "hmm");
     panel(this, 180, 320, 240, 70, "panel").setDepth(50);
     text(this, 180, 320, s >= 85 ? "PERFECT!" : good ? "GOOD" : "HMM...", 16, good ? COLOR.green : COLOR.pink).setDepth(51);
     if (s >= 85) {

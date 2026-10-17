@@ -5,6 +5,7 @@ import { api } from "../api/client";
 import { run, saved } from "../state/store";
 import { itemFrame } from "../assets/items";
 import { bg, button, fitLines, fitWidth, go, icon, item, panel, text, COLOR, type Txt } from "../ui";
+import { sfx } from "../sfx";
 
 /** Toggle detected ingredients on/off and nudge quantities. No text input on purpose. */
 export class ConfirmScene extends Phaser.Scene {
@@ -47,6 +48,7 @@ export class ConfirmScene extends Phaser.Scene {
       const row = panel(this, 180, y, 330, 34, on ? "card" : "panel_white");
       row.setInteractive({ useHandCursor: true }).on("pointerup", () => {
         this.enabled[i] = !this.enabled[i];
+        sfx.play("toggle");
         this.render();
       });
       const ic = item(this, 36, y, itemFrame(ing.name), 1.0).setAlpha(on ? 1 : 0.4);
@@ -54,11 +56,13 @@ export class ConfirmScene extends Phaser.Scene {
       const chk = icon(this, 262, y, on ? "check" : "cross", 1.2);
       const minus = icon(this, 292, y, "dot_pink", 2.8).setInteractive({ useHandCursor: true }).on("pointerup", () => {
         ing.qty = Math.max(1, ing.qty - 1); // 0 is "toggle it off", not an amount
+        sfx.play("back");
         this.render();
       });
       const minusGlyph = icon(this, 292, y, "minus", 1);
       const plus = icon(this, 322, y, "dot_pink", 2.8).setInteractive({ useHandCursor: true }).on("pointerup", () => {
         ing.qty += 1;
+        sfx.play("tap");
         this.render();
       });
       const plusGlyph = icon(this, 322, y, "plus", 1);

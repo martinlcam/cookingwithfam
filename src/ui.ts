@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import type { UiFrame } from "./assets/frames";
 import type { FoodFrame } from "./assets/food_frames";
+import { sfx } from "./sfx";
 
 /** Design frame size, mirrored from main.ts to avoid an import cycle. */
 const DW = 360;
@@ -178,6 +179,7 @@ export function button(
   const press = () => {
     face.setFrame(down);
     t.y = 2;
+    sfx.play("tap");
   };
   const release = () => {
     face.setFrame(up);
@@ -216,6 +218,7 @@ export function meter(scene: Phaser.Scene, x: number, y: number, w: number, h = 
 
 /** Fade out, start next scene with data. */
 export function go(scene: Phaser.Scene, key: string, data?: object) {
+  sfx.play("swoosh");
   scene.cameras.main.fadeOut(150, 255, 244, 220);
   scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => scene.scene.start(key, data));
 }

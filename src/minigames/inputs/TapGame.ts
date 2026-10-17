@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import type { ItemFrame } from "../../assets/frames";
 import { itemFrame } from "../../assets/items";
 import { hero, icon, item, meter, panel, text, COLOR } from "../../ui";
+import { sfx } from "../../sfx";
 import { BaseMinigame } from "../BaseMinigame";
 
 export interface TapConfig {
@@ -92,6 +93,7 @@ export class TapGame extends BaseMinigame {
   }
 
   private flash(frame: "mark_ok" | "mark_miss") {
+    sfx.play(frame === "mark_ok" ? "ok" : "miss");
     const m = item(this, this.marker.x, this.my - 30, frame, 2).setDepth(20);
     this.tweens.add({ targets: m, y: m.y - 25, alpha: 0, duration: 400, onComplete: () => m.destroy() });
   }

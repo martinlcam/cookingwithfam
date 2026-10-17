@@ -3,6 +3,7 @@ import { takePhoto } from "../camera";
 import { api } from "../api/client";
 import { run } from "../state/store";
 import { bg, button, go, icon, panel, text, COLOR, type Txt } from "../ui";
+import { sfx } from "../sfx";
 
 const MAX_PHOTOS = 8; // matches ClassifyRequest
 
@@ -38,6 +39,7 @@ export class PantryScene extends Phaser.Scene {
     if (run.photos.length >= MAX_PHOTOS) return this.status.setText(`${MAX_PHOTOS} photos max`);
     const photo = await takePhoto();
     if (photo) {
+      sfx.play("shutter");
       run.photos.push(photo);
       this.renderThumbs();
     }

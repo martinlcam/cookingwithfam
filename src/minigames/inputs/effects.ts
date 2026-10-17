@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { sfx } from "../../sfx";
 
 const FW = 64; // hero frame size
 
@@ -42,6 +43,7 @@ export class Cuttable {
     list.push(at);
     list.sort((a, b) => a - b);
     this.rebuild(true);
+    sfx.play("chop");
     return true;
   }
 
@@ -97,6 +99,7 @@ export class Peelable {
     at = Phaser.Math.Clamp(at, 0, FW - width);
     if (this.taken.some((t) => Math.abs(t - at) < width * 0.7)) return false;
     this.taken.push(at);
+    sfx.play("peel");
     const t = this.target;
     const copy = () => this.scene.add.image(t.x, t.y, "items64", t.frame.name).setScale(t.scaleX, t.scaleY);
     // 1. the flesh left behind: same band, lightened
@@ -126,6 +129,7 @@ export class Peelable {
 
 /** Throw off a few bits cropped from the sprite itself (shreds, gratings, scales). */
 export function shaveBits(scene: Phaser.Scene, target: Phaser.GameObjects.Image, fromX: number, fromY: number, n = 3) {
+  sfx.play("shave");
   for (let i = 0; i < n; i++) {
     const w = 6 + Math.floor(Math.random() * 6);
     const h = 4 + Math.floor(Math.random() * 6);
@@ -149,6 +153,7 @@ export function shaveBits(scene: Phaser.Scene, target: Phaser.GameObjects.Image,
 
 /** A dashed dark line along the stroke that fades (debone, devein, score). */
 export function strokeLine(scene: Phaser.Scene, x0: number, y0: number, x1: number, y1: number, color = 0x3a2118) {
+  sfx.play("slice");
   const g = scene.add.graphics().setDepth(4);
   g.lineStyle(3, color, 0.8);
   const n = 8;

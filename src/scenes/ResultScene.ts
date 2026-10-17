@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { run, saved } from "../state/store";
 import { dishSprite } from "../assets/food";
 import { bg, button, go, icon, item, panel, text, COLOR } from "../ui";
+import { sfx } from "../sfx";
 
 export class ResultScene extends Phaser.Scene {
   constructor() {
@@ -17,6 +18,7 @@ export class ResultScene extends Phaser.Scene {
     const medalFrame = avg >= 85 ? "medal_gold" : avg >= 65 ? "medal_silver" : "medal_bronze";
     const stars = avg >= 85 ? 3 : avg >= 65 ? 2 : 1;
     await saved.recordScore(run.recipe!.name, avg);
+    this.time.delayedCall(250, () => sfx.play("medal"));
 
     panel(this, 180, 200, 300, 300, "panel");
     const dish = dishSprite(this, 180, 160, run.recipe!, 3);

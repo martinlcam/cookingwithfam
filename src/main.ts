@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { registerSW } from "virtual:pwa-register";
+import { unlockAudio } from "./sfx";
 import { BootScene } from "./scenes/BootScene";
 import { TitleScene } from "./scenes/TitleScene";
 import { PantryScene } from "./scenes/PantryScene";
@@ -49,6 +50,8 @@ export function computeFit() {
   const h = Math.min(1000, Math.round(hd / z));
   return { w, h, zoom: z / dpr };
 }
+
+unlockAudio();
 
 const first = computeFit();
 
