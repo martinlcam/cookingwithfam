@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import { run } from "../state/store";
 import { sceneKeyFor } from "../minigames/registry";
 import { itemFrame } from "../assets/items";
-import { bg, hero, icon, panel, text, go, COLOR } from "../ui";
+import { bg, floor, hero, icon, panel, text, go, COLOR } from "../ui";
 
 /**
  * Hub that walks through the recipe steps. Launches each minigame on top of
@@ -24,8 +24,7 @@ export class KitchenScene extends Phaser.Scene {
     }
 
     bg(this, "bg_tile");
-    this.add.tileSprite(180, 560, 360, 160, "ui", "bg_counter").setDepth(-9);
-    this.add.tileSprite(180, 484, 360, 16, "ui", "counter_edge").setDepth(-9);
+    floor(this, 484);
 
     panel(this, 180, 50, 320, 64, "panel");
     text(this, 180, 42, recipe.name.toUpperCase().slice(0, 24), 9, COLOR.pink);

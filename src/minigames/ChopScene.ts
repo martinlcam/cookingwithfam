@@ -36,13 +36,13 @@ export class ChopScene extends BaseMinigame {
     const counter = text(this, CX, 500, `0 / ${need}`, 8, COLOR.pink);
 
     let startY = 0;
-    this.input.on("pointerdown", (p: Phaser.Input.Pointer) => (startY = p.y));
+    this.input.on("pointerdown", (p: Phaser.Input.Pointer) => (startY = p.worldY));
     this.input.on("pointermove", (p: Phaser.Input.Pointer) => {
-      if (p.isDown) this.knife.setPosition(p.x + 30, p.y - 40);
+      if (p.isDown) this.knife.setPosition(p.worldX + 30, p.worldY - 40);
     });
     this.input.on("pointerup", (p: Phaser.Input.Pointer) => {
-      const dy = p.y - startY;
-      const fx = Math.round((p.x - CX) / SCALE + FW / 2);
+      const dy = p.worldY - startY;
+      const fx = Math.round((p.worldX - CX) / SCALE + FW / 2);
       const overItem = fx > 6 && fx < FW - 6;
       if (dy > 40 && overItem) {
         if (this.cuts.some((c) => Math.abs(c - fx) < 3)) return; // same place twice

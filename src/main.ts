@@ -12,23 +12,44 @@ import { MINIGAME_SCENES } from "./minigames/registry";
 
 registerSW({ immediate: true });
 
-/** Logical resolution. Portrait, phone-shaped, scaled with integer zoom where possible. */
+/**
+ * Design size. Every scene lays out against a 360x640 frame; the canvas itself takes the
+ * device's real shape (see fit()) and the design frame is centred inside it with view().
+ */
 export const W = 360;
 export const H = 640;
+
+/**
+ * Pick a whole-number zoom in DEVICE pixels so pixel art and the bitmap font stay even, and
+ * size the logical canvas to fill the viewport at that zoom. On phones the zoom matches the
+ * devicePixelRatio (one game pixel per CSS pixel); on a 430-wide phone the canvas is 430
+ * game pixels wide, on a 360-wide phone 360. Desktop gets a letterboxed 480x1000 max.
+ */
+export function computeFit() {
+  const dpr = window.devicePixelRatio || 1;
+  const wd = window.innerWidth * dpr;
+  const hd = window.innerHeight * dpr;
+  let z = Math.max(1, Math.round(wd / W));
+  while (z > 1 && wd / z < 300) z--; // never shrink the design below 300 logical px wide
+  while (z > 1 && hd / z < 560) z--; // ...or so short that the layout cannot fit
+  const w = Math.min(480, Math.round(wd / z));
+  const h = Math.min(1000, Math.round(hd / z));
+  return { w, h, zoom: z / dpr };
+}
+
+const first = computeFit();
 
 export const game = new Phaser.Game({
   type: Phaser.AUTO,
   parent: "game",
-  width: W,
-  height: H,
-  backgroundColor: "#1a1a1a",
+  width: first.w,
+  height: first.h,
+  backgroundColor: "#f8a8c0",
   // Smooth text over nearest-neighbour sprites, like the DS games. Atlases get NEAREST in Boot.
   pixelArt: false,
   antialias: true,
   roundPixels: true,
-  // Integer zoom only. FIT scales the canvas by a fraction, which smears the pixel art and
-  // makes the bitmap font uneven. MAX_ZOOM picks the largest whole multiple that fits.
-  scale: { mode: Phaser.Scale.NONE, zoom: Phaser.Scale.Zoom.MAX_ZOOM, autoCenter: Phaser.Scale.CENTER_BOTH },
+  scale: { mode: Phaser.Scale.NONE, zoom: first.zoom, autoCenter: Phaser.Scale.CENTER_BOTH },
   input: { activePointers: 2 },
   scene: [
     BootScene,
@@ -43,9 +64,14 @@ export const game = new Phaser.Game({
   ],
 });
 
-/** MAX_ZOOM is only computed at boot; keep the whole-number zoom in step with the window. */
-function fitZoom() {
-  const z = Math.max(1, Math.floor(Math.min(window.innerWidth / W, window.innerHeight / H)));
-  if (game.scale.zoom !== z) game.scale.setZoom(z);
-}
-window.addEventListener("resize", fitZoom);
+let resizeTimer = 0;
+window.addEventListener("resize", () => {
+  window.clearTimeout(resizeTimer);
+  resizeTimer = window.setTimeout(() => {
+    const f = computeFit();
+    game.scale.resize(f.w, f.h);
+    game.scale.setZoom(f.zoom);
+    // Re-centre the design frame in every running scene.
+    for (const s of game.scene.getScenes(true)) s.cameras.main.setScroll(W / 2 - f.w / 2, f.h >= H ? H / 2 - f.h / 2 : 0);
+  }, 100);
+});

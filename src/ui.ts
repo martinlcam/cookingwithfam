@@ -2,6 +2,10 @@ import Phaser from "phaser";
 import type { UiFrame } from "./assets/frames";
 import type { FoodFrame } from "./assets/food_frames";
 
+/** Design frame size, mirrored from main.ts to avoid an import cycle. */
+const DW = 360;
+const DH = 640;
+
 /** Cooking-Mama-ish palette. Mirrors tools/sprites/palette.py. */
 export const PALETTE = {
   bg: 0x1a1a1a,
@@ -66,9 +70,34 @@ export function label(scene: Phaser.Scene, x: number, y: number, str: string, si
   return scene.add.bitmapText(x, y, FONT_GOLD, str, px(size)).setOrigin(0.5).setCenterAlign();
 }
 
-/** Full-screen tiled background. */
+/**
+ * The visible area in DESIGN coordinates. The canvas may be wider or taller than the 360x640
+ * design (see main.ts fit()); this centres the design in it and returns the real edges so a
+ * scene can pin things to the bottom or sides. Call it before laying out (bg() does).
+ */
+export function view(scene: Phaser.Scene) {
+  const w = scene.scale.width;
+  const h = scene.scale.height;
+  const left = DW / 2 - w / 2;
+  // Centre vertically on tall screens; on screens shorter than the design keep the top visible.
+  const top = h >= DH ? DH / 2 - h / 2 : 0;
+  scene.cameras.main.setScroll(left, top);
+  return { w, h, left, top, right: left + w, bottom: top + h };
+}
+
+/** Background tiles covering the whole visible canvas, whatever its shape. */
 export function bg(scene: Phaser.Scene, frame: UiFrame = "bg_tile") {
-  return scene.add.tileSprite(180, 320, 360, 640, "ui", frame).setDepth(-10);
+  const v = view(scene);
+  return scene.add.tileSprite(DW / 2, DH / 2, v.w + 32, v.h + 32, "ui", frame).setDepth(-10);
+}
+
+/** Wooden counter from design y `topY` down to the bottom edge of the screen, with its lip. */
+export function floor(scene: Phaser.Scene, topY: number) {
+  const v = view(scene);
+  const h = Math.max(16, v.bottom - topY + 16);
+  const band = scene.add.tileSprite(DW / 2, topY + h / 2, v.w + 32, h, "ui", "bg_counter").setDepth(-9);
+  scene.add.tileSprite(DW / 2, topY, v.w + 32, 16, "ui", "counter_edge").setDepth(-9);
+  return band;
 }
 
 /** Nine-slice panel from the UI atlas. */

@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { bg, button, go, hero, icon, panel, text, COLOR } from "../ui";
+import { bg, button, floor, go, hero, icon, panel, text, COLOR } from "../ui";
 import { resetRun } from "../state/store";
 
 export class TitleScene extends Phaser.Scene {
@@ -12,9 +12,8 @@ export class TitleScene extends Phaser.Scene {
     if (!location.search.includes("demo")) resetRun();
     bg(this, "bg_tile");
 
-    // Counter top along the bottom third, like the DS kitchen.
-    this.add.tileSprite(180, 560, 360, 160, "ui", "bg_counter").setDepth(-9);
-    this.add.tileSprite(180, 484, 360, 16, "ui", "counter_edge").setDepth(-9);
+    // Counter top along the bottom third, like the DS kitchen, down to the screen edge.
+    floor(this, 484);
 
     // Title card. Mama's portrait goes above it once drawn.
     panel(this, 180, 180, 300, 150, "panel");

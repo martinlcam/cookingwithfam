@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { icon, meter, text, COLOR, type Txt } from "../ui";
+import { icon, meter, text, view, COLOR, type Txt } from "../ui";
 
 /** Persistent overlay: timer bar and score meter. Minigames talk to it via events. */
 export class HUDScene extends Phaser.Scene {
@@ -10,9 +10,12 @@ export class HUDScene extends Phaser.Scene {
   }
 
   create() {
-    const timer = meter(this, 190, 612, 300, 18, "fill_green");
-    icon(this, 26, 612, "clock", 1.5);
-    this.score = text(this, 344, 20, "", 8, COLOR.pink, [1, 0.5]);
+    // Pinned to the real bottom and right edges of the screen.
+    const v = view(this);
+    const y = v.bottom - 28;
+    const timer = meter(this, 190, y, 300, 18, "fill_green");
+    icon(this, 26, y, "clock", 1.5);
+    this.score = text(this, v.right - 16, v.top + 20, "", 8, COLOR.pink, [1, 0.5]);
 
     this.game.events.on("hud:timer", (fraction: number) => {
       timer.set(fraction);

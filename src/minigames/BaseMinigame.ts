@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import type { Step } from "@shared/schema";
 import { VERB_BY_NAME } from "@shared/verbs";
-import { bg, icon, panel, text, COLOR } from "../ui";
+import { bg, floor, icon, panel, text, COLOR } from "../ui";
 
 /**
  * Every minigame extends this. It owns the countdown, the progress-to-score
@@ -29,8 +29,7 @@ export abstract class BaseMinigame extends Phaser.Scene {
   create() {
     this.game.events.emit("hud:reset");
     bg(this, "bg_tile");
-    this.add.tileSprite(180, 500, 360, 280, "ui", "bg_counter").setDepth(-9);
-    this.add.tileSprite(180, 364, 360, 16, "ui", "counter_edge").setDepth(-9);
+    floor(this, 364);
     panel(this, 180, 34, 320, 44, "bubble");
     text(this, 180, 34, this.step.caption.toUpperCase(), 9, COLOR.pink);
     this.setup();
