@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { Pantry, RecipeList, type Pantry as PantryT, type RecipeList as RecipeListT } from "../shared/schema";
 import { VERBS } from "../shared/verbs";
+import { DISHES } from "../shared/dishes";
 
 let cachedClient: Anthropic | undefined;
 /** Lazy so the server boots (and serves the game) even before ANTHROPIC_API_KEY is set. */
@@ -44,6 +45,8 @@ export async function classifyPantry(images: string[]): Promise<PantryT> {
 
 const VERB_SHEET = VERBS.map((v) => `- ${v.verb} (${v.input}): ${v.hint}; default params ${JSON.stringify(v.params)}`).join("\n");
 
+const DISH_SHEET = DISHES.map((d) => `- ${d.id}: ${d.hint}`).join("\n");
+
 const RECIPE_SYSTEM = `You design recipes for a Cooking Mama style game. Each recipe is a
 sequence of minigame steps. A step's "verb" MUST be one of the verbs below; there
 are no other verbs. Pick 3 to 10 steps that feel like really cooking the dish, in
@@ -51,8 +54,15 @@ cooking order. Use only ingredients from the pantry plus pantry staples (salt,
 pepper, oil, water). Vary the input types across a recipe so it is fun to play.
 Captions are short imperative instructions like "Chop the onion".
 
+Each recipe's "dish" MUST be one of the dish ids below: pick the one whose
+look is closest to the finished plate. There are no other dishes. If nothing
+is close, use a generic dish_* id.
+
 Available verbs:
-${VERB_SHEET}`;
+${VERB_SHEET}
+
+Available dishes:
+${DISH_SHEET}`;
 
 export async function generateRecipes(pantry: PantryT): Promise<RecipeListT> {
   const res = await client().messages.parse({

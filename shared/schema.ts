@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { VERB_NAMES } from "./verbs";
+import { DISH_IDS } from "./dishes";
 
 export const PantryItem = z.object({
   name: z.string().describe("lowercase singular ingredient name, e.g. 'onion'"),
@@ -23,6 +24,7 @@ export type Step = z.infer<typeof Step>;
 export const Recipe = z.object({
   name: z.string(),
   description: z.string().describe("one sentence"),
+  dish: z.enum(DISH_IDS).describe("the plated-dish sprite that looks closest to the finished recipe"),
   ingredients: z.array(z.string()),
   steps: z.array(Step).min(3).max(10),
 });

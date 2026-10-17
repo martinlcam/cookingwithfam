@@ -25,6 +25,7 @@ export const DEMO_RECIPES: RecipeList = {
   recipes: [
     {
       name: "Garlic Chicken Pasta",
+      dish: "dish_pasta",
       description: "Pan-seared chicken tossed with spaghetti, garlic and tomatoes.",
       ingredients: ["chicken", "spaghetti", "garlic", "tomato", "olive oil"],
       steps: [
@@ -38,6 +39,7 @@ export const DEMO_RECIPES: RecipeList = {
     },
     {
       name: "Tomato Omelette",
+      dish: "dish_eggs",
       description: "Fluffy eggs folded over tomato and cheese.",
       ingredients: ["egg", "tomato", "cheese"],
       steps: [
@@ -49,6 +51,7 @@ export const DEMO_RECIPES: RecipeList = {
     },
     {
       name: "Spinach Salad",
+      dish: "dish_salad",
       description: "Fresh greens with tomato and shaved parmesan.",
       ingredients: ["spinach", "tomato", "parmesan", "olive oil"],
       steps: [
