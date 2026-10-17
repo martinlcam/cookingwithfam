@@ -67,7 +67,7 @@ fine, "note" is an empty string.
 
 Each recipe's "dish" MUST be one of the dish ids below: pick the one whose
 look is closest to the finished plate. There are no other dishes. If nothing
-is close, use a generic dish_* id.
+is close, use the plainest generic plate (soup, salad, sandwich, rice_steamed...).
 
 Available verbs:
 ${VERB_SHEET}
