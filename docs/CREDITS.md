@@ -18,6 +18,29 @@ atlases. 64x64 pixel art.
 Required attribution, also shown in the game's credits: "Ingredient art by caiomarcelpixel,
 CC BY 4.0".
 
+## Free Pixel foods — ghostpixxells
+
+32x32 dishes and snacks (chips, cheese puffs, popcorn, cookies, burgers, ...) in the `items`
+atlases. `tools/raw/packs/ghostpixxells_pixelfood_cc0.zip`.
+
+- Source: https://ghostpixxells.itch.io/pixelfood
+- License: CC0 1.0 (stated on the page: "Creative Commons Zero v1.0 Universal")
+
+## CC0 Food Icons compilation — assembled by AntumDeluge
+
+32x32 and 24x24 food icons by bluecarrot16, 7Soul1, thekingphoenix, MELLE, Glitch (Tiny
+Speck), ArlanTR, Fleurman, Jetrel and HomoHikka. `tools/raw/packs/oga_cc0_*.zip`.
+
+- Source: https://opengameart.org/content/cc0-food-icons
+- License: CC0 1.0 for every member set (the compilation page lists each source)
+
+## 188 food icons — ARoachIFoundOnMyPillow
+
+16x16 icons used as the last fallback before the generic frame. `tools/raw/packs/oga_188_food_icons_cc0.zip`.
+
+- Source: https://opengameart.org/content/16x16-food
+- License: CC0 1.0
+
 ## PixelFoodThemedAssets
 
 Finished dishes and drinks in the `food` atlas (`tools/raw/PixelFoodThemedAssets.zip`).

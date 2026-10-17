@@ -17,6 +17,10 @@ export const DEMO_PANTRY: Pantry = {
     { name: "garlic", qty: 1, unit: "pcs", confidence: 0.9 },
     { name: "olive oil", qty: 1, unit: "jar", confidence: 0.6 },
     { name: "spinach", qty: 1, unit: "bunch", confidence: 0.4 },
+    { name: "chips", qty: 1, unit: "bag", confidence: 0.8 },
+    { name: "welch's fruit snacks", qty: 1, unit: "pack", confidence: 0.7 },
+    { name: "capri sun fruit punch", qty: 1, unit: "pouch", confidence: 0.7 },
+    { name: "soft chewy granola bar", qty: 2, unit: "pcs", confidence: 0.6 },
     { name: "mystery jar", qty: 1, unit: "jar", confidence: 0.3 },
   ],
 };

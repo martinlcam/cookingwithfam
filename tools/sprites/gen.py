@@ -10,6 +10,7 @@ import raster
 from raster import Canvas
 from items import ITEMS
 from ui import UI
+from packs import catalog, fit as pack_fit
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT = os.path.join(ROOT, "public", "assets")
@@ -46,7 +47,9 @@ def atlas_json(frames, image, w, h):
     }
 
 def write_atlas(name, sprites):
-    sheet, frames = pack(sprites)
+    total = sum(im.width * im.height for _, im in sprites)
+    max_w = 512 if total < 200_000 else 1024 if total < 900_000 else 2048
+    sheet, frames = pack(sprites, max_w=max_w)
     sheet.save(os.path.join(OUT, f"{name}.png"))
     with open(os.path.join(OUT, f"{name}.json"), "w") as f:
         json.dump(atlas_json(frames, f"{name}.png", sheet.width, sheet.height), f, indent=1)
@@ -81,7 +84,7 @@ PACK_ZIP = os.path.join(ROOT, "tools", "raw", "free_ingredients_pack01.zip")
 # Our frame name -> basename (lowercase, no extension) of a 64x64 sprite in caiomarcelpixel's
 # Free Ingredients Pack (CC BY 4.0, see docs/CREDITS.md). Highest-priority art source.
 PACK_MAP = {
-    "tomato": "tomato", "onion": "onion", "garlic": "garlic", "carrot": "carrot", "potato": "potato",
+    "tomato": "tomato", "onion": "onion", "carrot": "carrot", "potato": "potato",
     "pepper": "bell pepper green", "broccoli": "broccoli", "lettuce": "lettuce", "cucumber": "cucumber",
     "eggplant": "eggplant", "corn": "corn", "apple": "apple", "avocado": "avocado", "banana": "banana",
     "lemon": "lemon", "orange": "orange", "strawberry": "strawberry", "bacon": "bacon strip",
@@ -149,12 +152,18 @@ def px_override(name, size):
     return out
 
 def main():
-    # Priority per frame: CC-BY ingredient pack > hand-drawn pxl sprite > generated shape.
-    names = list(ITEMS) + [n for n in PACK_MAP if n not in ITEMS]
+    # Priority per frame: hand-mapped CC-BY ingredient > any catalogued pack sprite (packs.py,
+    # by pack priority) > hand-drawn pxl sprite > generated shape. Tools, fx and UI props are
+    # never taken from packs (packs.BLOCK), so the peer's pxl cookware stays.
+    cat = catalog()
+    names = list(ITEMS) + [n for n in PACK_MAP if n not in ITEMS] + sorted(n for n in cat if n not in ITEMS and n not in PACK_MAP)
     def pick(n, size):
-        im = pack_override(n, size) or px_override(n, size)
+        im = pack_override(n, size)
+        if im is None and n in cat: im = pack_fit(cat[n][0], size)
+        if im is None: im = px_override(n, size)
         if im is None and n in ITEMS: im = render(n, 32, 32, ITEMS[n], k=size // 32)
         return im
+    print(f"catalogued pack frames: {len(cat)}; total item frames: {len(names)}")
     items = [(n, pick(n, 32)) for n in names]
     items64 = [(n, pick(n, 64)) for n in names]
     uis = [(n, render(n, w, h, fn)) for n, (w, h, fn) in UI.items()]
@@ -164,7 +173,7 @@ def main():
         f.write("export const ITEM_FRAMES = " + json.dumps(sorted(names), indent=0).replace("\n", " ") + " as const;\n")
         f.write("export const UI_FRAMES = " + json.dumps(sorted(UI), indent=0).replace("\n", " ") + " as const;\n")
         f.write("export type ItemFrame = (typeof ITEM_FRAMES)[number];\nexport type UiFrame = (typeof UI_FRAMES)[number];\n")
-    preview([("ITEMS 64x64 (hero, shown 2x)", items64), ("ITEMS 32x32 (icons, shown 4x)", items), ("UI", uis)], os.path.join(ROOT, "docs", "sprites-preview.png"))
+    preview([("ITEMS 64x64 (hero, shown 2x, first 240 of %d)" % len(items64), items64[:240]), ("ITEMS 32x32 (icons, shown 4x, first 120)", items[:120]), ("UI", uis)], os.path.join(ROOT, "docs", "sprites-preview.png"))
     print(f"items: {len(items)} (+64px)  ui: {len(uis)}  -> public/assets, docs/sprites-preview.png")
 
 if __name__ == "__main__":

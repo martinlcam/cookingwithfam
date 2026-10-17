@@ -36,6 +36,16 @@ tinted at runtime. The look was modelled on the DS game's lettering; the shapes 
 `text()` uses gold for the default ink colour and tints white for any other colour; `label()`
 is always gold. Sizes snap to 16, 32 or 48 px so glyphs stay on integer pixels.
 
+## Raw ingredients and pantry items: packs first
+
+`tools/sprites/packs.py` catalogues every sprite in the zips under `tools/raw/` (caiomarcelpixel
+CC BY, ghostpixxells CC0, the OpenGameArt CC0 food compilation, the 188-icon CC0 set; see
+`docs/CREDITS.md`) by normalised file name, with a priority per pack. `gen.py` builds the items
+atlases from that catalogue (~700 frames), so the model's ingredient words resolve to real art
+far more often, and `itemFrame()` in `src/assets/items.ts` matches whole phrases
+("potato chips" -> `potatochips`), tails ("fresh cherry tomatoes" -> `tomato`), and a large
+synonym table for brands and packaged goods ("capri sun" -> `fruity_juice`).
+
 ## Raw ingredients: CC-BY pack first, pxl for the rest
 
 The first choice for every raw ingredient is caiomarcelpixel's Free Ingredients Pack
