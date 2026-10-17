@@ -35,10 +35,10 @@ export class TiltGame extends BaseMinigame {
 
     let sx = 0, sy = 0, st = 0;
     this.input.on("pointerdown", (p: Phaser.Input.Pointer) => {
-      sx = p.x; sy = p.y; st = p.downTime;
+      sx = p.worldX; sy = p.worldY; st = p.downTime;
     });
     this.input.on("pointerup", (p: Phaser.Input.Pointer) => {
-      const dx = p.x - sx, dy = p.y - sy, ms = p.upTime - st;
+      const dx = p.worldX - sx, dy = p.worldY - sy, ms = p.upTime - st;
       const fast = ms < 350;
       const ok = this.cfg.axis === "up" ? dy < -60 && fast : Math.abs(dx) > 60 && fast;
       if (!ok) return;

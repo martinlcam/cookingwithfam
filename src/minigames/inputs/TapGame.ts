@@ -11,6 +11,9 @@ export interface TapConfig {
   zone?: number;
   /** Marker speed in meter-widths per second. */
   speed?: number;
+  /** What sits on the vessel: the step item (default) or the recipe's finished dish.
+   *  In dish mode the step item becomes the shaker/tool when we have a sprite for it. */
+  subject?: "item" | "dish";
 }
 
 /**
@@ -41,8 +44,15 @@ export class TapGame extends BaseMinigame {
 
     panel(this, 180, 380, 310, 150, "board");
     item(this, 180, 380, this.cfg.vessel, 5);
-    this.target = hero(this, 180, 355, itemFrame(this.step.item), 1.5).setDepth(1);
-    if (this.cfg.tool) item(this, 250, 300, this.cfg.tool, 3).setAngle(-30).setDepth(2);
+    const frame = itemFrame(this.step.item);
+    let tool = this.cfg.tool;
+    if (this.cfg.subject === "dish") {
+      this.target = this.dish(180, 355, 3).setDepth(1);
+      if (frame !== "generic" && frame !== this.cfg.vessel) tool = frame;
+    } else {
+      this.target = hero(this, 180, 355, frame, 1.5).setDepth(1);
+    }
+    if (tool) item(this, 250, 300, tool, 3).setAngle(-30).setDepth(2);
 
     const m = meter(this, this.mx, this.my, this.mw, 18, "fill_yellow");
     m.set(1);

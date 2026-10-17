@@ -6,6 +6,6 @@ import { PlaceGame } from "./inputs/PlaceGame";
  */
 export class PlateScene extends PlaceGame {
   constructor() {
-    super("mg:plate", { target: "plate", radius: 60 });
+    super("mg:plate", { target: "plate", radius: 60, subject: "dish" });
   }
 }

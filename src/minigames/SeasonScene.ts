@@ -6,6 +6,6 @@ import { TapGame } from "./inputs/TapGame";
  */
 export class SeasonScene extends TapGame {
   constructor() {
-    super("mg:season", { tool: "salt", vessel: "pan", zone: 0.3, speed: 1.3 });
+    super("mg:season", { tool: "salt", vessel: "pan", zone: 0.3, speed: 1.3, subject: "dish" });
   }
 }

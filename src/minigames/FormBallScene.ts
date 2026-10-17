@@ -6,6 +6,6 @@ import { PlaceGame } from "./inputs/PlaceGame";
  */
 export class FormBallScene extends PlaceGame {
   constructor() {
-    super("mg:form_ball", { target: "plate" });
+    super("mg:form_ball", { target: "plate", subject: "dish" });
   }
 }

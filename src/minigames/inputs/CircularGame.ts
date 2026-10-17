@@ -63,6 +63,6 @@ export class CircularGame extends BaseMinigame {
   }
 
   private angle(p: Phaser.Input.Pointer) {
-    return Math.atan2(p.y - this.cy, p.x - this.cx);
+    return Math.atan2(p.worldY - this.cy, p.worldX - this.cx);
   }
 }

@@ -1,6 +1,8 @@
 import Phaser from "phaser";
 import type { Step } from "@shared/schema";
 import { VERB_BY_NAME } from "@shared/verbs";
+import { dishSprite } from "../assets/food";
+import { run } from "../state/store";
 import { bg, floor, icon, panel, text, COLOR } from "../ui";
 
 /**
@@ -36,6 +38,16 @@ export abstract class BaseMinigame extends Phaser.Scene {
   }
 
   abstract setup(): void;
+
+  /**
+   * The recipe's finished dish, for verbs that build the final plate (plate, sprinkle,
+   * season, stuff, wrap, form_ball). Reads run.recipe.dish; a scene launched without a
+   * run falls back to keyword matching on the step item. `scale` is per 32px frame.
+   */
+  protected dish(x: number, y: number, scale = 3) {
+    const recipe = run.recipe ?? { name: this.step.item, ingredients: [this.step.item] };
+    return dishSprite(this, x, y, recipe, scale);
+  }
 
   /** Report how far along the task is, 0..1. */
   protected progress(fraction: number) {

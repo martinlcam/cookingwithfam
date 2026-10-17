@@ -6,6 +6,6 @@ import { PlaceGame } from "./inputs/PlaceGame";
  */
 export class WrapScene extends PlaceGame {
   constructor() {
-    super("mg:wrap", { target: "plate", radius: 40 });
+    super("mg:wrap", { target: "plate", radius: 40, subject: "dish" });
   }
 }
