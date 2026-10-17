@@ -9,3 +9,5 @@ dev-dist/
 Cooking Mama.zip
 *.nds
 tools/raw/cartridge*/
+__pycache__/
+*.pyc
