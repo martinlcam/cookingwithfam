@@ -59,7 +59,7 @@ export class PantryScene extends Phaser.Scene {
   private async analyze() {
     if (this.busy || run.photos.length === 0) return;
     this.busy = true;
-    this.status.setText("mama is looking...");
+    this.status.setText("looking...");
     try {
       run.pantry = await api.classify(run.photos);
       go(this, "Confirm");
