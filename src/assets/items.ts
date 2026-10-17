@@ -39,15 +39,11 @@ const SYNONYMS: Record<string, ItemFrame> = {
   drumstick: "chicken",
   "chicken wings": "chicken_wing",
   wings: "chicken_wing",
-  cod: "fish",
-  haddock: "fish",
-  "white fish": "fish",
   prawn: "shrimp",
   prawns: "shrimp",
   calamari: "squid",
   mussels: "clam",
   mussel: "clam",
-  scallop: "oyster",
   crab: "lobster",
   spinach: "lettuce",
   kale: "cabbage",
@@ -169,8 +165,36 @@ const SYNONYMS: Record<string, ItemFrame> = {
   udon: "noodles",
   soba: "noodles",
   "instant noodles": "noodles",
-    "crunchy topping": "nut", topping: "all_spice", toppings: "all_spice", tortillas: "tortillas", tortilla: "tortillas",
-  "hot sauce": "sauce_hot", tabasco: "sauce_hot",
+  "crunchy topping": "nut",
+  topping: "all_spice",
+  toppings: "all_spice",
+  tortillas: "tortillas",
+  tortilla: "tortillas",
+  "hot sauce": "sauce_hot",
+  tabasco: "sauce_hot",
+  snapper: "fish_bass",
+  "red snapper": "fish_bass",
+  "sea bass": "fish_bass",
+  bass: "fish_bass",
+  mackerel: "fish_herring",
+  herring: "fish_herring",
+  anchovy: "fish_anchovy",
+  anchovies: "fish_anchovy",
+  halibut: "fish_halibut",
+  tilapia: "fish_tilapia",
+  flounder: "fish_flounder",
+  sole: "fish_flounder",
+  haddock: "fish_haddock",
+  swordfish: "fish_swordfish",
+  fillet: "fish_fillet",
+  "fish fillet": "fish_fillet",
+  "white fish fillet": "fish_fillet",
+  "fish sticks": "fish_sticks",
+  "fish fingers": "fish_sticks",
+  "whole fish": "fish",
+  seafood: "shrimp",
+  scallops: "oyster",
+  "crab meat": "lobster",
   chip: "potatochips",
   chips: "potatochips",
   crisps: "potatochips",
@@ -359,6 +383,17 @@ const SYNONYMS: Record<string, ItemFrame> = {
   microwave: "pot",
 };
 
+/** Singular and plural spellings of a token, most likely first. */
+function forms(w: string): string[] {
+  const out = [w];
+  if (w.endsWith("ies")) out.push(w.slice(0, -3) + "y");
+  if (w.endsWith("es")) out.push(w.slice(0, -2));
+  if (w.endsWith("s")) out.push(w.slice(0, -1));
+  out.push(w + "s", w + "es");
+  if (w.endsWith("y")) out.push(w.slice(0, -1) + "ies");
+  return out;
+}
+
 /** Synonym keys with a space in them, longest first, for phrase matching. */
 const PHRASE_KEYS = Object.keys(SYNONYMS).filter((k) => k.includes(" ")).toSorted((a, b) => b.length - a.length);
 
@@ -374,14 +409,15 @@ export function itemFrame(name: string): ItemFrame {
   // Pack frames are named with underscores: "potato chips" -> "potato_chips".
   const joined = n.replace(/ /g, "_");
   if (FRAMES.has(joined)) return joined as ItemFrame;
-  const singular = n.replace(/(es|s)$/, "");
-  if (FRAMES.has(singular)) return singular as ItemFrame;
-  for (const v of [joined.replace(/(es|s)$/, ""), joined + "s", joined + "es"]) if (FRAMES.has(v)) return v as ItemFrame;
+  for (const v of forms(n)) if (FRAMES.has(v)) return v as ItemFrame;
+  for (const v of forms(n)) if (SYNONYMS[v]) return SYNONYMS[v]!;
+  for (const v of forms(joined)) if (FRAMES.has(v)) return v as ItemFrame;
   // Drop leading qualifiers: "fresh cherry tomatoes" -> "cherry_tomatoes" -> "tomatoes"
   const words0 = n.split(" ");
   for (let i = 1; i < words0.length; i++) {
     const tail = words0.slice(i).join("_");
-    for (const v of [tail, tail.replace(/(es|s)$/, ""), tail + "s", tail + "es"]) if (FRAMES.has(v)) return v as ItemFrame;
+    for (const v of forms(tail)) if (FRAMES.has(v)) return v as ItemFrame;
+    for (const v of forms(tail.replace(/_/g, " "))) if (SYNONYMS[v]) return SYNONYMS[v]!;
   }
   // Multi-word synonyms anywhere in the phrase, longest first ("nutter butter bites" -> cookies,
   // "capri sun fruit punch" -> juice). These beat single words so brands win over "butter".
@@ -389,7 +425,7 @@ export function itemFrame(name: string): ItemFrame {
   // Try each word, longest first ("fresh cherry tomatoes" -> tomato), singular and plural.
   const words = n.split(" ").toSorted((a, b) => b.length - a.length);
   for (const w of words) {
-    for (const v of [w, w.replace(/(es|s)$/, ""), w + "s", w + "es"]) {
+    for (const v of forms(w)) {
       if (FRAMES.has(v)) return v as ItemFrame;
       if (SYNONYMS[v]) return SYNONYMS[v]!;
     }
