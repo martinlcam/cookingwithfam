@@ -36,7 +36,18 @@ tinted at runtime. The look was modelled on the DS game's lettering; the shapes 
 `text()` uses gold for the default ink colour and tints white for any other colour; `label()`
 is always gold. Sizes snap to 16, 32 or 48 px so glyphs stay on integer pixels.
 
-## Raw ingredients: hand-drawn with pxl
+## Raw ingredients: CC-BY pack first, pxl for the rest
+
+The first choice for every raw ingredient is caiomarcelpixel's Free Ingredients Pack
+(CC BY 4.0, `tools/raw/free_ingredients_pack01.zip`, credit in `docs/CREDITS.md`): 84 hand-drawn
+64x64 sprites covering vegetables, fruit, meat, fish and dairy. `PACK_MAP` in `gen.py` maps our
+frame names to its filenames, and also adds frames that only exist thanks to the pack (cabbage,
+pumpkin, salmon, steak, brie, ...). Each sprite is cropped to its bounds and scaled by the
+largest whole number that fits the 32px or 64px frame, so nothing is resampled unevenly.
+
+Priority per frame in `gen.py`: pack > pxl sprite > generated shape.
+
+### pxl for whatever the pack lacks
 
 ```
 node ~/.claude/skills/pxl-pixel-art/bin/pxl.js build tools/sprites/px/food.px.js

@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { bg, button, floor, go, hero, icon, panel, text, COLOR } from "../ui";
+import { bg, button, floor, go, hero, icon, panel, text, view, COLOR } from "../ui";
 import { resetRun } from "../state/store";
 
 export class TitleScene extends Phaser.Scene {
@@ -31,6 +31,10 @@ export class TitleScene extends Phaser.Scene {
     hero(this, 150, 530, "tomato", 1);
     hero(this, 250, 540, "pan", 1.5);
     hero(this, 320, 545, "bowl", 1.25);
+
+    // CC BY 4.0 attribution for the ingredient pack (docs/CREDITS.md).
+    const v = view(this);
+    text(this, 180, v.bottom - 12, "ingredient art: caiomarcelpixel, CC BY 4.0", 6, COLOR.cream).setAlpha(0.9);
 
     button(this, 180, 330, "TAKE PHOTOS", () => go(this, "Pantry"), 260, 52, "pink", "camera");
     button(this, 180, 400, "LAST PANTRY", () => go(this, "Confirm", { useSaved: true }), 260, 48, "blue");
