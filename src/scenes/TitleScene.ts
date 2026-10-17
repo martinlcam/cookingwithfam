@@ -32,9 +32,12 @@ export class TitleScene extends Phaser.Scene {
     hero(this, 250, 540, "pan", 1.5);
     hero(this, 320, 545, "bowl", 1.25);
 
-    // CC BY 4.0 attribution for the ingredient pack (docs/CREDITS.md).
+    // Art attribution lives on its own screen (docs/CREDITS.md); just a small link here.
     const v = view(this);
-    text(this, 180, v.bottom - 12, "ingredient art: caiomarcelpixel, CC BY 4.0", 6, COLOR.cream).setAlpha(0.9);
+    text(this, v.right - 8, v.bottom - 10, "credits", 6, COLOR.cream, [1, 1])
+      .setAlpha(0.9)
+      .setInteractive({ useHandCursor: true })
+      .on("pointerup", () => go(this, "Credits"));
 
     button(this, 180, 330, "TAKE PHOTOS", () => go(this, "Pantry"), 260, 52, "pink", "camera");
     button(this, 180, 400, "LAST PANTRY", () => go(this, "Confirm", { useSaved: true }), 260, 48, "blue");

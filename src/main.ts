@@ -8,6 +8,7 @@ import { RecipePickScene } from "./scenes/RecipePickScene";
 import { KitchenScene } from "./scenes/KitchenScene";
 import { HUDScene } from "./scenes/HUDScene";
 import { ResultScene } from "./scenes/ResultScene";
+import { CreditsScene } from "./scenes/CreditsScene";
 import { MINIGAME_SCENES } from "./minigames/registry";
 
 registerSW({ immediate: true });
@@ -60,6 +61,7 @@ export const game = new Phaser.Game({
     KitchenScene,
     HUDScene,
     ResultScene,
+    CreditsScene,
     ...MINIGAME_SCENES,
   ],
 });
