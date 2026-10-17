@@ -66,6 +66,14 @@ export const game = new Phaser.Game({
   ],
 });
 
+// In a plain browser tab (not installed), go fullscreen on the first tap so the system bars
+// get out of the way on Android. Installed PWAs already run fullscreen via the manifest; iOS
+// has no fullscreen API for pages, so this is a no-op there.
+const installed = matchMedia("(display-mode: fullscreen), (display-mode: standalone)").matches;
+if (!installed && document.fullscreenEnabled) {
+  document.addEventListener("pointerup", () => void document.documentElement.requestFullscreen({ navigationUI: "hide" }).catch(() => {}), { once: true });
+}
+
 let resizeTimer = 0;
 window.addEventListener("resize", () => {
   window.clearTimeout(resizeTimer);

@@ -19,9 +19,13 @@ export default defineConfig({
         description: "Photograph your pantry, cook what you have.",
         theme_color: "#1a1a1a",
         background_color: "#1a1a1a",
-        display: "standalone",
+        // fullscreen hides the Android status bar and nav buttons when installed; iOS has no
+        // equivalent and falls back to standalone.
+        display: "fullscreen",
+        display_override: ["fullscreen", "standalone"],
         orientation: "portrait",
         icons: [
+          { src: "icons/icon-64.png", sizes: "64x64", type: "image/png" },
           { src: "icons/icon-192.png", sizes: "192x192", type: "image/png" },
           { src: "icons/icon-512.png", sizes: "512x512", type: "image/png" },
           { src: "icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
