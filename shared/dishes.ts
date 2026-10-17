@@ -26,6 +26,9 @@ export const DISHES = [
   { id: "dish_eggs", atlas: "items", hint: "omelette, scrambled or fried eggs, frittata" },
   { id: "dish_sandwich", atlas: "items", hint: "sandwich, burger, wrap, toast with toppings" },
   { id: "dish_cake", atlas: "items", hint: "generic cake or baked dessert" },
+  { id: "dish_curry", atlas: "items", hint: "curry with rice, stew over rice, saucy meat and rice" },
+  { id: "dish_pancakes", atlas: "items", hint: "pancakes, waffles, french toast, crepe stack" },
+  { id: "dish_fried_chicken", atlas: "items", hint: "fried chicken, nuggets, croquettes, fritters, katsu" },
   // Specific looks from the food pack.
   { id: "pizza", atlas: "food", hint: "pizza, flatbread with toppings" },
   { id: "lasagna", atlas: "food", hint: "lasagna, baked pasta, casserole, gratin" },

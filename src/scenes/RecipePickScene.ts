@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { run } from "../state/store";
-import { dishFrame } from "../assets/food";
-import { bg, food, go, icon, panel, text, COLOR } from "../ui";
+import { dishSprite } from "../assets/food";
+import { bg, go, icon, panel, text, COLOR } from "../ui";
 
 export class RecipePickScene extends Phaser.Scene {
   constructor() {
@@ -22,7 +22,7 @@ export class RecipePickScene extends Phaser.Scene {
         run.scores = [];
         go(this, "Kitchen");
       });
-      food(this, 56, y, dishFrame(r), 2);
+      dishSprite(this, 56, y, r, 2);
       text(this, 100, y - 36, r.name.toUpperCase().slice(0, 26), 8, COLOR.pink, [0, 0.5]);
       this.add.bitmapText(100, y - 20, "mama", r.description.length > 46 ? r.description.slice(0, 44).trimEnd() + "..." : r.description, 16).setMaxWidth(205);
       text(this, 320, y + 36, `${r.steps.length} STEPS`, 6, COLOR.muted, [1, 0.5]);

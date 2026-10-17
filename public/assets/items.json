@@ -360,7 +360,7 @@
     "h": 32
    }
   },
-  "drop": {
+  "dish_cake": {
    "frame": {
     "x": 99,
     "y": 33,
@@ -380,7 +380,7 @@
     "h": 32
    }
   },
-  "egg": {
+  "dish_curry": {
    "frame": {
     "x": 132,
     "y": 33,
@@ -400,7 +400,7 @@
     "h": 32
    }
   },
-  "eggplant": {
+  "dish_eggs": {
    "frame": {
     "x": 165,
     "y": 33,
@@ -420,7 +420,7 @@
     "h": 32
    }
   },
-  "fish": {
+  "dish_fried_chicken": {
    "frame": {
     "x": 198,
     "y": 33,
@@ -440,7 +440,7 @@
     "h": 32
    }
   },
-  "flame_0": {
+  "dish_pancakes": {
    "frame": {
     "x": 231,
     "y": 33,
@@ -460,7 +460,7 @@
     "h": 32
    }
   },
-  "flame_1": {
+  "dish_pasta": {
    "frame": {
     "x": 264,
     "y": 33,
@@ -480,7 +480,7 @@
     "h": 32
    }
   },
-  "flame_2": {
+  "dish_rice": {
    "frame": {
     "x": 297,
     "y": 33,
@@ -500,7 +500,7 @@
     "h": 32
    }
   },
-  "flour": {
+  "dish_salad": {
    "frame": {
     "x": 330,
     "y": 33,
@@ -520,7 +520,7 @@
     "h": 32
    }
   },
-  "garlic": {
+  "dish_sandwich": {
    "frame": {
     "x": 363,
     "y": 33,
@@ -540,7 +540,7 @@
     "h": 32
    }
   },
-  "generic": {
+  "dish_soup": {
    "frame": {
     "x": 396,
     "y": 33,
@@ -560,7 +560,7 @@
     "h": 32
    }
   },
-  "ginger": {
+  "dish_steak": {
    "frame": {
     "x": 429,
     "y": 33,
@@ -580,7 +580,7 @@
     "h": 32
    }
   },
-  "grater": {
+  "dish_stirfry": {
    "frame": {
     "x": 462,
     "y": 33,
@@ -600,9 +600,249 @@
     "h": 32
    }
   },
-  "hint_circle": {
+  "drop": {
    "frame": {
     "x": 0,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "egg": {
+   "frame": {
+    "x": 33,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "eggplant": {
+   "frame": {
+    "x": 66,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "fish": {
+   "frame": {
+    "x": 99,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "flame_0": {
+   "frame": {
+    "x": 132,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "flame_1": {
+   "frame": {
+    "x": 165,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "flame_2": {
+   "frame": {
+    "x": 198,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "flour": {
+   "frame": {
+    "x": 231,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "garlic": {
+   "frame": {
+    "x": 264,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "generic": {
+   "frame": {
+    "x": 297,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "ginger": {
+   "frame": {
+    "x": 330,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "grater": {
+   "frame": {
+    "x": 363,
+    "y": 66,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "hint_circle": {
+   "frame": {
+    "x": 396,
     "y": 66,
     "w": 32,
     "h": 32
@@ -622,7 +862,7 @@
   },
   "hint_h": {
    "frame": {
-    "x": 33,
+    "x": 429,
     "y": 66,
     "w": 32,
     "h": 32
@@ -642,7 +882,7 @@
   },
   "hint_v": {
    "frame": {
-    "x": 66,
+    "x": 462,
     "y": 66,
     "w": 32,
     "h": 32
@@ -662,8 +902,8 @@
   },
   "ketchup": {
    "frame": {
-    "x": 99,
-    "y": 66,
+    "x": 0,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -682,8 +922,8 @@
   },
   "knife": {
    "frame": {
-    "x": 132,
-    "y": 66,
+    "x": 33,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -702,8 +942,8 @@
   },
   "lemon": {
    "frame": {
-    "x": 165,
-    "y": 66,
+    "x": 66,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -722,8 +962,8 @@
   },
   "lettuce": {
    "frame": {
-    "x": 198,
-    "y": 66,
+    "x": 99,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -742,8 +982,8 @@
   },
   "lid": {
    "frame": {
-    "x": 231,
-    "y": 66,
+    "x": 132,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -762,8 +1002,8 @@
   },
   "mark_miss": {
    "frame": {
-    "x": 264,
-    "y": 66,
+    "x": 165,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -782,8 +1022,8 @@
   },
   "mark_ok": {
    "frame": {
-    "x": 297,
-    "y": 66,
+    "x": 198,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -802,8 +1042,8 @@
   },
   "milk": {
    "frame": {
-    "x": 330,
-    "y": 66,
+    "x": 231,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -822,8 +1062,8 @@
   },
   "mushroom": {
    "frame": {
-    "x": 363,
-    "y": 66,
+    "x": 264,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -842,8 +1082,8 @@
   },
   "noodles": {
    "frame": {
-    "x": 396,
-    "y": 66,
+    "x": 297,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -862,8 +1102,8 @@
   },
   "oil": {
    "frame": {
-    "x": 429,
-    "y": 66,
+    "x": 330,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -882,8 +1122,8 @@
   },
   "onion": {
    "frame": {
-    "x": 462,
-    "y": 66,
+    "x": 363,
+    "y": 99,
     "w": 32,
     "h": 32
    },
@@ -902,7 +1142,7 @@
   },
   "orange": {
    "frame": {
-    "x": 0,
+    "x": 396,
     "y": 99,
     "w": 32,
     "h": 32
@@ -922,7 +1162,7 @@
   },
   "pan": {
    "frame": {
-    "x": 33,
+    "x": 429,
     "y": 99,
     "w": 32,
     "h": 32
@@ -942,7 +1182,7 @@
   },
   "pasta": {
    "frame": {
-    "x": 66,
+    "x": 462,
     "y": 99,
     "w": 32,
     "h": 32
@@ -962,246 +1202,6 @@
   },
   "peas": {
    "frame": {
-    "x": 99,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "pepper": {
-   "frame": {
-    "x": 132,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "piece": {
-   "frame": {
-    "x": 165,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "plate": {
-   "frame": {
-    "x": 198,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "pork": {
-   "frame": {
-    "x": 231,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "pot": {
-   "frame": {
-    "x": 264,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "potato": {
-   "frame": {
-    "x": 297,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "rice": {
-   "frame": {
-    "x": 330,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "rolling_pin": {
-   "frame": {
-    "x": 363,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "salt": {
-   "frame": {
-    "x": 396,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "sausage": {
-   "frame": {
-    "x": 429,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "shrimp": {
-   "frame": {
-    "x": 462,
-    "y": 99,
-    "w": 32,
-    "h": 32
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 32,
-    "h": 32
-   },
-   "sourceSize": {
-    "w": 32,
-    "h": 32
-   }
-  },
-  "smoke": {
-   "frame": {
     "x": 0,
     "y": 132,
     "w": 32,
@@ -1220,7 +1220,7 @@
     "h": 32
    }
   },
-  "soy_sauce": {
+  "pepper": {
    "frame": {
     "x": 33,
     "y": 132,
@@ -1240,7 +1240,7 @@
     "h": 32
    }
   },
-  "spatula": {
+  "piece": {
    "frame": {
     "x": 66,
     "y": 132,
@@ -1260,7 +1260,7 @@
     "h": 32
    }
   },
-  "splash": {
+  "plate": {
    "frame": {
     "x": 99,
     "y": 132,
@@ -1280,7 +1280,7 @@
     "h": 32
    }
   },
-  "spoon": {
+  "pork": {
    "frame": {
     "x": 132,
     "y": 132,
@@ -1300,7 +1300,7 @@
     "h": 32
    }
   },
-  "steam": {
+  "pot": {
    "frame": {
     "x": 165,
     "y": 132,
@@ -1320,7 +1320,7 @@
     "h": 32
    }
   },
-  "stove": {
+  "potato": {
    "frame": {
     "x": 198,
     "y": 132,
@@ -1340,7 +1340,7 @@
     "h": 32
    }
   },
-  "strawberry": {
+  "rice": {
    "frame": {
     "x": 231,
     "y": 132,
@@ -1360,7 +1360,7 @@
     "h": 32
    }
   },
-  "sugar": {
+  "rolling_pin": {
    "frame": {
     "x": 264,
     "y": 132,
@@ -1380,7 +1380,7 @@
     "h": 32
    }
   },
-  "tofu": {
+  "salt": {
    "frame": {
     "x": 297,
     "y": 132,
@@ -1400,7 +1400,7 @@
     "h": 32
    }
   },
-  "tomato": {
+  "sausage": {
    "frame": {
     "x": 330,
     "y": 132,
@@ -1420,7 +1420,7 @@
     "h": 32
    }
   },
-  "water": {
+  "shrimp": {
    "frame": {
     "x": 363,
     "y": 132,
@@ -1440,7 +1440,7 @@
     "h": 32
    }
   },
-  "whisk": {
+  "smoke": {
    "frame": {
     "x": 396,
     "y": 132,
@@ -1460,10 +1460,250 @@
     "h": 32
    }
   },
-  "yogurt": {
+  "soy_sauce": {
    "frame": {
     "x": 429,
     "y": 132,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "spatula": {
+   "frame": {
+    "x": 462,
+    "y": 132,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "splash": {
+   "frame": {
+    "x": 0,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "spoon": {
+   "frame": {
+    "x": 33,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "steam": {
+   "frame": {
+    "x": 66,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "stove": {
+   "frame": {
+    "x": 99,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "strawberry": {
+   "frame": {
+    "x": 132,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "sugar": {
+   "frame": {
+    "x": 165,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "tofu": {
+   "frame": {
+    "x": 198,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "tomato": {
+   "frame": {
+    "x": 231,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "water": {
+   "frame": {
+    "x": 264,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "whisk": {
+   "frame": {
+    "x": 297,
+    "y": 165,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "yogurt": {
+   "frame": {
+    "x": 330,
+    "y": 165,
     "w": 32,
     "h": 32
    },
@@ -1487,7 +1727,7 @@
   "format": "RGBA8888",
   "size": {
    "w": 512,
-   "h": 164
+   "h": 197
   },
   "scale": "1"
  }

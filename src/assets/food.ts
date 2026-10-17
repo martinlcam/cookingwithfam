@@ -1,4 +1,6 @@
+import Phaser from "phaser";
 import type { Recipe } from "@shared/schema";
+import { DISH_BY_ID } from "@shared/dishes";
 import { FOOD_FRAMES, type FoodFrame } from "./food_frames";
 
 const FRAMES = new Set<string>(FOOD_FRAMES);
@@ -94,4 +96,17 @@ export function dishFrame(recipe: Pick<Recipe, "name" | "ingredients">): FoodFra
 /** True if a food-atlas frame of that name exists. */
 export function hasFood(frame: string): frame is FoodFrame {
   return FRAMES.has(frame);
+}
+
+/**
+ * The plated-dish sprite for a recipe. Uses the model's chosen `dish` id from the fixed
+ * vocabulary in shared/dishes.ts (generic plates live in the items atlases, specific looks
+ * in the food pack). Falls back to keyword matching when `dish` is missing or unknown.
+ * `scale` is the on-screen multiple of a 32px frame; generic dishes use the 64px atlas.
+ */
+export function dishSprite(scene: Phaser.Scene, x: number, y: number, recipe: Pick<Recipe, "name" | "ingredients"> & { dish?: string }, scale = 2) {
+  const def = recipe.dish ? DISH_BY_ID[recipe.dish] : undefined;
+  if (def?.atlas === "items" && scene.textures.get("items64").has(def.id)) return scene.add.image(x, y, "items64", def.id).setScale(scale / 2);
+  if (def?.atlas === "food" && scene.textures.get("food").has(def.id)) return scene.add.image(x, y, "food", def.id).setScale(scale);
+  return scene.add.image(x, y, "food", dishFrame(recipe)).setScale(scale);
 }

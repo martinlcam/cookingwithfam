@@ -537,3 +537,115 @@ def _(c):
     c.part(rrect(2, 10, 30, 26, 3), P["dkgrey"], shade=1, dome=0.3)
     c.part(ring(16, 18, 9, 6), P["black"], shade=0, light=False)
     c.part(ring(16, 18, 5, 3), P["black"], shade=0, light=False)
+
+# ------------------------------------------------------------ plated dishes
+# Generic plates the recipe model can pick when the food pack has no closer look.
+# Modelled on the DS menu screens: white plate with a blue rim seen from above-front,
+# the food as a soft mound in the middle. ids must match shared/dishes.ts.
+def _plate(c, cy=21, rx=15, ry=7.5):
+    c.part(ellipse(16, cy, rx, ry), P["white"], shade=1, dome=0.35, outline_color=(170, 170, 185))
+    c.stroke((ellipse(16, cy, rx - 1.5, ry - 1.2) - ellipse(16, cy, rx - 2.5, ry - 1.9)), P["sky"])
+
+def _bowl(c, color, cy=18):
+    c.part(ellipse(16, cy, 13.5, 5) | (ellipse(16, cy, 13.5, 12) & rect(0, cy, 32, 32)), color, shade=2, dome=0.7)
+    c.part(rect(11, cy + 11, 21, cy + 13), color, shade=0, light=False)
+
+@item("dish_soup")
+def _(c):
+    _bowl(c, P["tomato"], cy=17)
+    broth = ellipse(16, 17, 11.5, 3.8)
+    c.part(broth, P["orange"], shade=1, dome=0.3, outline_color=shift(P["tomato"], -0.25))
+    for x, y, col, r in ((12, 16, "green", 1.6), (19, 17, "lemon", 1.8), (15, 18, "tomato", 1.4), (21, 15, "green", 1.3)):
+        c.part(circle(x, y, r), P[col], shade=0, light=False, outline=False)
+
+@item("dish_salad")
+def _(c):
+    _plate(c)
+    base = ellipse(16, 17, 11, 7.5)
+    c.part(base, P["dkgreen"], shade=2, dome=0.6)
+    for cx, cy, r in ((11, 15, 4.5), (20, 14, 4), (16, 19, 4.5), (9, 20, 3)):
+        c.part(circle(cx, cy, r) & base, P["green"], shade=1, dome=0.8)
+    c.part(circle(8, 18, 2.5), P["tomato"], shade=1); c.part(circle(23, 18, 2.5), P["tomato"], shade=1)
+    c.part(ellipse(17, 13, 2.5, 1.5), P["cream"], shade=0, light=False, outline=False)
+
+@item("dish_steak")
+def _(c):
+    _plate(c)
+    meat = ellipse(14, 17, 10, 6) | ellipse(10, 15, 5, 4.5)
+    c.part(meat, (150, 85, 55), shade=2, dome=0.5)
+    inner = core(meat)
+    c.stroke(line(7, 19, 19, 13, 1) & inner, (110, 60, 40)); c.stroke(line(10, 21, 22, 15, 1) & inner, (110, 60, 40))
+    c.part(circle(25, 18, 3), P["green"], shade=1); c.part(ellipse(24, 22, 3, 1.8), P["lemon"], shade=1)
+
+@item("dish_stirfry")
+def _(c):
+    _plate(c)
+    pile = ellipse(16, 17, 11.5, 7)
+    c.part(pile, P["orange"], shade=2, dome=0.5)
+    for cx, cy, col, r in ((10, 16, "green", 2.6), (16, 14, "tomato", 2.4), (21, 17, "yellow", 2.4), (13, 20, "green", 2.2), (19, 20, "peach", 2.4), (24, 14, "green", 1.8)):
+        c.part(circle(cx, cy, r) & pile, P[col], shade=1, dome=0.8, outline=False)
+
+@item("dish_rice")
+def _(c):
+    _bowl(c, P["blue"], cy=18)
+    mound = ellipse(16, 15, 10, 6.5) & rect(0, 0, 32, 19)
+    c.part(mound, P["white"], shade=2, dome=0.7, outline_color=(190, 190, 205))
+    for x, y in ((10, 15), (17, 11), (21, 15), (14, 17)): c.stroke(pxs((x, y)), (225, 225, 235))
+    c.part(ellipse(16, 12, 4, 2), P["tomato"], shade=1)
+
+@item("dish_pasta")
+def _(c):
+    _plate(c)
+    pile = ellipse(16, 17, 11, 6.5)
+    c.part(pile, P["lemon"], shade=2, dome=0.5)
+    inner = core(pile)
+    for x0, y0, x1, y1 in ((7, 17, 14, 13), (11, 21, 19, 14), (16, 21, 24, 15), (20, 21, 26, 18)): c.stroke(line(x0, y0, x1, y1, 1) & inner, P["gold"])
+    c.part(ellipse(16, 15, 5.5, 3), P["tomato"], shade=1, dome=0.5)
+    c.part(ellipse(14, 13, 1.8, 1.2), P["green"], shade=0, light=False, outline=False)
+
+@item("dish_eggs")
+def _(c):
+    _plate(c)
+    white = ellipse(13, 16, 8, 5.5) | ellipse(19, 18, 8, 5.5)
+    c.part(white, P["white"], shade=1, dome=0.4, outline_color=(200, 190, 170))
+    c.part(circle(13, 16, 3.2), P["gold"], shade=2, dome=1.2); c.part(circle(20, 18, 3.2), P["gold"], shade=2, dome=1.2)
+
+@item("dish_sandwich")
+def _(c):
+    _plate(c, cy=22)
+    c.part(rrect(5, 19, 27, 25, 2), P["tan"], shade=1, dome=0.4)
+    c.part(rrect(4, 17, 28, 20, 1), P["green"], shade=0, light=False)
+    c.part(rrect(5, 15, 27, 18, 1), P["tomato"], shade=0, light=False)
+    c.part(rrect(5, 13, 27, 16, 1), P["yellow"], shade=0, light=False)
+    c.part(rrect(5, 8, 27, 14, 3), P["tan"], shade=2, dome=0.6)
+
+@item("dish_cake")
+def _(c):
+    _plate(c, cy=23)
+    c.part(rrect(6, 13, 26, 24, 2), P["peach"], shade=2, dome=0.4)
+    c.part(rrect(7, 17, 25, 19, 1), P["tomato"], shade=0, light=False, outline=False)
+    c.part(ellipse(16, 12, 10.5, 3), P["white"], shade=1, dome=0.4, outline_color=(200, 190, 180))
+    c.part(circle(16, 9, 2.5), P["red"], shade=2)
+
+@item("dish_curry")
+def _(c):
+    _plate(c)
+    c.part(ellipse(11, 17, 7.5, 6), P["white"], shade=2, dome=0.6, outline_color=(190, 190, 205))
+    sauce = ellipse(20, 17, 8.5, 5.5)
+    c.part(sauce, (160, 100, 50), shade=2, dome=0.4)
+    for x, y, col in ((18, 16, "orange"), (22, 18, "tan")): c.part(circle(x, y, 1.8) & sauce, P[col], shade=0, light=False, outline=False)
+
+@item("dish_pancakes")
+def _(c):
+    _plate(c, cy=23)
+    for i, y in enumerate((20, 16, 12)):
+        c.part(ellipse(16, y, 11 - i * 0.5, 3.5), P["tan"], shade=1, dome=0.5)
+    c.part(ellipse(16, 11, 6, 2), P["gold"], shade=0, light=False, outline=False)
+    c.part(rect(14, 7, 18, 10), P["yellow"], shade=1)
+
+@item("dish_fried_chicken")
+def _(c):
+    _plate(c)
+    for cx, cy, r in ((11, 16, 5), (20, 15, 5.5), (16, 20, 4.5)):
+        c.part(ellipse(cx, cy, r, r * 0.8), (205, 130, 60), shade=2, dome=0.8)
+    c.part(circle(25, 19, 2.5), P["green"], shade=1)

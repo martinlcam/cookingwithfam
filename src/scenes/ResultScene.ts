@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { run, saved } from "../state/store";
-import { dishFrame } from "../assets/food";
-import { bg, button, food, go, icon, item, panel, text, COLOR } from "../ui";
+import { dishSprite } from "../assets/food";
+import { bg, button, go, icon, item, panel, text, COLOR } from "../ui";
 
 export class ResultScene extends Phaser.Scene {
   constructor() {
@@ -19,7 +19,7 @@ export class ResultScene extends Phaser.Scene {
     await saved.recordScore(run.recipe!.name, avg);
 
     panel(this, 180, 200, 300, 300, "panel");
-    const dish = food(this, 180, 160, dishFrame(run.recipe!), 3);
+    const dish = dishSprite(this, 180, 160, run.recipe!, 3);
     for (let i = 0; i < 3; i++) {
       const steam = item(this, 160 + i * 20, 110 - i * 6, "steam", 1.5).setAlpha(0.7);
       this.tweens.add({ targets: steam, y: steam.y - 20, alpha: 0, duration: 1400 + i * 300, repeat: -1, delay: i * 200 });
@@ -37,7 +37,7 @@ export class ResultScene extends Phaser.Scene {
     panel(this, 180, 410, 220, 70, "card");
     icon(this, 110, 410, medalFrame, 1.6);
     text(this, 195, 410, medal, 14, COLOR.pink);
-    this.tweens.add({ targets: dish, scale: 3.25, duration: 800, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
+    this.tweens.add({ targets: dish, scale: dish.scale * 1.08, duration: 800, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
 
     button(this, 180, 500, "COOK ANOTHER", () => go(this, "RecipePick"), 260, 48, "pink", "arrow_r");
     button(this, 180, 560, "NEW PANTRY", () => go(this, "Title"), 260, 48, "blue", "camera");
