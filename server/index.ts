@@ -41,10 +41,10 @@ const recipes = createRoute({
   path: "/api/recipes",
   tags: ["pantry"],
   summary: "Generate recipes from a confirmed pantry",
-  description: "Returns 3 to 5 recipes. Every step uses a verb from the minigame library.",
+  description: "Returns up to 5 recipes; an empty list plus a note when the pantry can't make a real dish. Items must have a positive qty. Every step uses a verb from the minigame library.",
   request: { body: { content: { "application/json": { schema: RecipesRequest } }, required: true } },
   responses: {
-    200: { content: { "application/json": { schema: RecipeList } }, description: "Playable recipes" },
+    200: { content: { "application/json": { schema: RecipeList } }, description: "Playable recipes, or none with a note" },
     400: err("Invalid request body"),
     502: err("Claude call failed"),
   },

@@ -13,6 +13,8 @@ export class RecipePickScene extends Phaser.Scene {
     bg(this, "bg_tile");
     panel(this, 180, 40, 320, 50, "panel");
     text(this, 180, 40, "PICK A DISH", 13, COLOR.pink);
+    const note = run.recipes!.note?.trim();
+    if (note) text(this, 180, 88, note.slice(0, 80), 6, COLOR.muted);
     run.recipes!.recipes.forEach((r, i) => {
       const y = 128 + i * 108;
       const card = panel(this, 180, y, 330, 100, "card");

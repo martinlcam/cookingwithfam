@@ -34,7 +34,7 @@ export class ConfirmScene extends Phaser.Scene {
     this.list = this.add.container(0, 0);
     this.render();
 
-    this.status = text(this, 180, 548, "", 8);
+    this.status = text(this, 180, 548, "", 7);
     button(this, 180, 596, "FIND RECIPES", () => this.findRecipes(), 260, 48, "pink", "check");
   }
 
@@ -53,7 +53,7 @@ export class ConfirmScene extends Phaser.Scene {
       const lbl = text(this, 58, y, formatQty(ing.qty, ing.unit, ing.name).slice(0, 22), 7, on ? COLOR.ink : COLOR.muted, [0, 0.5]);
       const chk = icon(this, 262, y, on ? "check" : "cross", 1.2);
       const minus = icon(this, 292, y, "dot_pink", 2.8).setInteractive({ useHandCursor: true }).on("pointerup", () => {
-        ing.qty = Math.max(0, ing.qty - 1);
+        ing.qty = Math.max(1, ing.qty - 1); // 0 is "toggle it off", not an amount
         this.render();
       });
       const minusGlyph = icon(this, 292, y, "minus", 1);
@@ -67,12 +67,18 @@ export class ConfirmScene extends Phaser.Scene {
   }
 
   private async findRecipes() {
-    const pantry: Pantry = { items: run.pantry!.items.filter((_, i) => this.enabled[i]) };
+    const pantry: Pantry = { items: run.pantry!.items.filter((_, i) => this.enabled[i] && _.qty > 0) };
     if (pantry.items.length === 0) return this.status.setText("pick at least one");
-    this.status.setText("mama is thinking...");
+    this.status.setText("thinking...");
     try {
       await saved.setLastPantry(pantry);
-      run.recipes = await api.recipes(pantry);
+      const list = await api.recipes(pantry);
+      if (list.recipes.length === 0) {
+        // Nothing honest to cook. Keep the player here so they can rethink the pantry.
+        this.status.setText((list.note || "not much to cook with that. add a few more things?").slice(0, 90));
+        return;
+      }
+      run.recipes = list;
       go(this, "RecipePick");
     } catch (e) {
       this.status.setText("no recipes came back. retry?");

@@ -26,6 +26,7 @@ export const DEMO_PANTRY: Pantry = {
 };
 
 export const DEMO_RECIPES: RecipeList = {
+  note: "",
   recipes: [
     {
       name: "Garlic Chicken Pasta",
