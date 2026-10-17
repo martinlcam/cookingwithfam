@@ -3,9 +3,9 @@ import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { Pantry, RecipeList, type Pantry as PantryT, type RecipeList as RecipeListT } from "../shared/schema";
 import { VERBS } from "../shared/verbs";
 
-let _client: Anthropic | undefined;
+let cachedClient: Anthropic | undefined;
 /** Lazy so the server boots (and serves the game) even before ANTHROPIC_API_KEY is set. */
-const client = () => (_client ??= new Anthropic());
+const client = () => (cachedClient ??= new Anthropic());
 const MODEL = process.env.CLAUDE_MODEL ?? "claude-opus-5-5";
 
 type ImageMedia = "image/jpeg" | "image/png" | "image/webp" | "image/gif";
