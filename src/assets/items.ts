@@ -359,6 +359,9 @@ const SYNONYMS: Record<string, ItemFrame> = {
   microwave: "pot",
 };
 
+/** Synonym keys with a space in them, longest first, for phrase matching. */
+const PHRASE_KEYS = Object.keys(SYNONYMS).filter((k) => k.includes(" ")).toSorted((a, b) => b.length - a.length);
+
 function norm(s: string) {
   return s.toLowerCase().replace(/[^a-z ]/g, " ").replace(/\s+/g, " ").trim();
 }
@@ -373,24 +376,23 @@ export function itemFrame(name: string): ItemFrame {
   if (FRAMES.has(joined)) return joined as ItemFrame;
   const singular = n.replace(/(es|s)$/, "");
   if (FRAMES.has(singular)) return singular as ItemFrame;
-  const joinedSingular = joined.replace(/(es|s)$/, "");
-  if (FRAMES.has(joinedSingular)) return joinedSingular as ItemFrame;
+  for (const v of [joined.replace(/(es|s)$/, ""), joined + "s", joined + "es"]) if (FRAMES.has(v)) return v as ItemFrame;
   // Drop leading qualifiers: "fresh cherry tomatoes" -> "cherry_tomatoes" -> "tomatoes"
   const words0 = n.split(" ");
   for (let i = 1; i < words0.length; i++) {
     const tail = words0.slice(i).join("_");
-    if (FRAMES.has(tail)) return tail as ItemFrame;
-    const tailSingular = tail.replace(/(es|s)$/, "");
-    if (FRAMES.has(tailSingular)) return tailSingular as ItemFrame;
+    for (const v of [tail, tail.replace(/(es|s)$/, ""), tail + "s", tail + "es"]) if (FRAMES.has(v)) return v as ItemFrame;
   }
-  // Try each word, longest first ("fresh cherry tomatoes" -> tomato).
+  // Multi-word synonyms anywhere in the phrase, longest first ("nutter butter bites" -> cookies,
+  // "capri sun fruit punch" -> juice). These beat single words so brands win over "butter".
+  for (const key of PHRASE_KEYS) if (n.includes(key)) return SYNONYMS[key]!;
+  // Try each word, longest first ("fresh cherry tomatoes" -> tomato), singular and plural.
   const words = n.split(" ").toSorted((a, b) => b.length - a.length);
   for (const w of words) {
-    if (FRAMES.has(w)) return w as ItemFrame;
-    if (SYNONYMS[w]) return SYNONYMS[w]!;
-    const ws = w.replace(/(es|s)$/, "");
-    if (FRAMES.has(ws)) return ws as ItemFrame;
-    if (SYNONYMS[ws]) return SYNONYMS[ws]!;
+    for (const v of [w, w.replace(/(es|s)$/, ""), w + "s", w + "es"]) {
+      if (FRAMES.has(v)) return v as ItemFrame;
+      if (SYNONYMS[v]) return SYNONYMS[v]!;
+    }
   }
   for (const key of Object.keys(SYNONYMS)) if (n.includes(key)) return SYNONYMS[key]!;
   return "generic";

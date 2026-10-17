@@ -11,7 +11,17 @@ import { ResultScene } from "./scenes/ResultScene";
 import { CreditsScene } from "./scenes/CreditsScene";
 import { MINIGAME_SCENES } from "./minigames/registry";
 
-registerSW({ immediate: true });
+// autoUpdate installs new versions in the background, but a PWA that stays open never asks.
+// Poll every minute and reload as soon as a new service worker takes over, so play-testers
+// always run the latest deploy instead of a cached bundle.
+registerSW({
+  immediate: true,
+  onRegisteredSW(_url, registration) {
+    if (!registration) return;
+    setInterval(() => registration.update().catch(() => {}), 60_000);
+  },
+});
+navigator.serviceWorker?.addEventListener("controllerchange", () => window.location.reload());
 
 /**
  * Design size. Every scene lays out against a 360x640 frame; the canvas itself takes the
