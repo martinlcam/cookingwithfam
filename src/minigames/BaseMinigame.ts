@@ -4,7 +4,7 @@ import { VERB_BY_NAME } from "@shared/verbs";
 import { dishSprite } from "../assets/food";
 import { run } from "../state/store";
 import { bg, floor, icon, panel, text, COLOR } from "../ui";
-import { sfx } from "../sfx";
+import { sfx, type LoopName } from "../sfx";
 
 /**
  * Every minigame extends this. It owns the countdown, the progress-to-score
@@ -19,6 +19,7 @@ export abstract class BaseMinigame extends Phaser.Scene {
   private elapsed = 0;
   private done = false;
   private frac = 0;
+  private loops: (() => void)[] = [];
 
   init(data: { step: Step }) {
     this.step = data.step;
@@ -27,10 +28,12 @@ export abstract class BaseMinigame extends Phaser.Scene {
     this.elapsed = 0;
     this.done = false;
     this.frac = 0;
+    this.loops = [];
   }
 
   create() {
     this.game.events.emit("hud:reset");
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.stopLoops());
     bg(this, "bg_tile");
     floor(this, 364);
     panel(this, 180, 34, 320, 44, "bubble");
@@ -39,6 +42,21 @@ export abstract class BaseMinigame extends Phaser.Scene {
   }
 
   abstract setup(): void;
+
+  /** Start a looping sound that stops by itself when the game finishes or the scene shuts down. */
+  protected loop(name: LoopName) {
+    const stop = sfx.loop(name);
+    this.loops.push(stop);
+    return () => {
+      stop();
+      this.loops = this.loops.filter((s) => s !== stop);
+    };
+  }
+
+  private stopLoops() {
+    for (const stop of this.loops) stop();
+    this.loops = [];
+  }
 
   /**
    * The recipe's finished dish, for verbs that build the final plate (plate, sprinkle,
@@ -75,6 +93,7 @@ export abstract class BaseMinigame extends Phaser.Scene {
     this.done = true;
     const s = this.score();
     const good = s >= 60;
+    this.stopLoops();
     sfx.play(s >= 85 ? "perfect" : good ? "good" : "hmm");
     panel(this, 180, 320, 240, 70, "panel").setDepth(50);
     text(this, 180, 320, s >= 85 ? "PERFECT!" : good ? "GOOD" : "HMM...", 16, good ? COLOR.green : COLOR.pink).setDepth(51);

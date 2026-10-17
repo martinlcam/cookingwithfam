@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import type { ItemFrame } from "../../assets/frames";
 import { itemFrame } from "../../assets/items";
 import { item, panel, text, COLOR } from "../../ui";
+import { sfx } from "../../sfx";
 import { BaseMinigame } from "../BaseMinigame";
 
 export interface CircularConfig {
@@ -23,6 +24,7 @@ export class CircularGame extends BaseMinigame {
   private last: number | null = null;
   private tool?: Phaser.GameObjects.Image;
   private contents!: Phaser.GameObjects.Image;
+  private stopLoop = () => {};
   protected readonly cx = 180;
   protected readonly cy = 370;
 
@@ -45,15 +47,24 @@ export class CircularGame extends BaseMinigame {
     text(this, 180, 470, "DRAG IN CIRCLES", 7, COLOR.muted);
     const counter = text(this, 180, 500, `0 / ${this.params.rotations ?? 6}`, 8, COLOR.pink);
 
-    this.input.on("pointerdown", (p: Phaser.Input.Pointer) => (this.last = this.angle(p)));
-    this.input.on("pointerup", () => (this.last = null));
+    this.input.on("pointerdown", (p: Phaser.Input.Pointer) => {
+      this.last = this.angle(p);
+      this.stopLoop();
+      this.stopLoop = this.loop("stir");
+    });
+    this.input.on("pointerup", () => {
+      this.last = null;
+      this.stopLoop();
+    });
     this.input.on("pointermove", (p: Phaser.Input.Pointer) => {
       if (!p.isDown || this.last === null) return;
       const a = this.angle(p);
       const d = Phaser.Math.Angle.Wrap(a - this.last);
       this.last = a;
       if (Math.abs(d) > 0.8) return; // teleport, ignore
+      const before = Math.floor(this.acc / (Math.PI * 2));
       this.acc += Math.abs(d);
+      if (Math.floor(this.acc / (Math.PI * 2)) > before) sfx.play("ok"); // one more lap
       hint.setAlpha(Math.max(0, 0.7 - this.acc / need));
       this.tool?.setPosition(this.cx + Math.cos(a) * r, this.cy + Math.sin(a) * r);
       this.contents.setAngle(this.contents.angle + Phaser.Math.RadToDeg(d) * 0.3);

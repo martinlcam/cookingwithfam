@@ -1,6 +1,7 @@
 import type { ItemFrame } from "../../assets/frames";
 import { itemFrame } from "../../assets/items";
 import { item, meter, panel, text, COLOR } from "../../ui";
+import { sfx } from "../../sfx";
 import { BaseMinigame } from "../BaseMinigame";
 
 export interface RapidConfig {
@@ -34,6 +35,7 @@ export class RapidGame extends BaseMinigame {
     text(this, 180, 470, "TAP FAST!", 8, COLOR.muted);
 
     this.input.on("pointerdown", () => {
+      sfx.play("bubble");
       this.heat = Math.min(1, this.heat + 1 / need);
       this.bar.set(this.heat);
       this.fx.forEach((f) => f.setAlpha(0.9 * (1 - this.heat)));

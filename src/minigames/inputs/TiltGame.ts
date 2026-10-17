@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import type { ItemFrame } from "../../assets/frames";
 import { itemFrame } from "../../assets/items";
 import { item, panel, text, COLOR } from "../../ui";
+import { sfx } from "../../sfx";
 import { BaseMinigame } from "../BaseMinigame";
 
 export interface TiltConfig {
@@ -43,6 +44,7 @@ export class TiltGame extends BaseMinigame {
       const ok = this.cfg.axis === "up" ? dy < -60 && fast : Math.abs(dx) > 60 && fast;
       if (!ok) return;
       this.flicks += 1;
+      sfx.play(this.cfg.axis === "up" ? "flip" : "splash");
       counter.setText(`${this.flicks} / ${need}`);
       const k = this.cfg.axis === "up" ? { y: this.vessel.y - 30 } : { x: this.vessel.x + Math.sign(dx) * 30, angle: Math.sign(dx) * 15 };
       this.tweens.add({ targets: this.vessel, ...k, yoyo: true, duration: 120 });

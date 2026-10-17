@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import type { ItemFrame } from "../../assets/frames";
 import { itemFrame } from "../../assets/items";
 import { item, panel, text, COLOR } from "../../ui";
+import { sfx } from "../../sfx";
 import { BaseMinigame } from "../BaseMinigame";
 
 export interface PlaceConfig {
@@ -49,6 +50,7 @@ export class PlaceGame extends BaseMinigame {
         if (Phaser.Math.Distance.Between(piece.x, piece.y, this.tx, this.ty) < r) {
           piece.disableInteractive().setDepth(2);
           this.placed += 1;
+          sfx.play(this.placed >= need ? "sparkle" : "thud");
           if (dish) {
             // Piece melts into the dish, which fills in as the plate comes together.
             this.tweens.add({ targets: piece, x: this.tx, y: this.ty, scale: 0, alpha: 0, duration: 160, onComplete: () => piece.destroy() });

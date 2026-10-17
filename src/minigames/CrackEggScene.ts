@@ -1,3 +1,4 @@
+import { sfx } from "../sfx";
 import { TapGame } from "./inputs/TapGame";
 
 /**
@@ -7,5 +8,10 @@ import { TapGame } from "./inputs/TapGame";
 export class CrackEggScene extends TapGame {
   constructor() {
     super("mg:crack_egg", { tool: null, vessel: "bowl", zone: 0.3 });
+  }
+
+  protected override onHit() {
+    sfx.play("crack");
+    super.onHit();
   }
 }

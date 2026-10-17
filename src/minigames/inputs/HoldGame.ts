@@ -2,6 +2,7 @@ import type Phaser from "phaser";
 import type { ItemFrame } from "../../assets/frames";
 import { itemFrame } from "../../assets/items";
 import { hero, item, meter, panel, text, COLOR } from "../../ui";
+import { sfx } from "../../sfx";
 import { BaseMinigame } from "../BaseMinigame";
 
 export interface HoldConfig {
@@ -27,6 +28,7 @@ export class HoldGame extends BaseMinigame {
   private contents!: Phaser.GameObjects.Image;
   private flame?: Phaser.GameObjects.Image;
   private flameIdx = 0;
+  private stopLoop = () => {};
 
   constructor(key: string, protected cfg: HoldConfig) {
     super(key);
@@ -53,9 +55,14 @@ export class HoldGame extends BaseMinigame {
     this.add.rectangle(180 - 140 + 280 * target, 520, 3, 26, 0x3a2118).setDepth(3);
     text(this, 180, 470, this.cfg.mode === "hold" ? "HOLD, RELEASE AT THE LINE" : "TAP WHEN IT REACHES THE LINE", 7, COLOR.muted);
 
+    // Watch mode cooks on its own: the pan sizzles or the pot bubbles until the player taps.
+    if (this.cfg.mode === "watch") this.stopLoop = this.loop(this.cfg.vessel === "pan" ? "sizzle" : "boil");
+
     this.input.on("pointerdown", () => {
-      if (this.cfg.mode === "hold") this.holding = true;
-      else this.release(target);
+      if (this.cfg.mode === "hold") {
+        this.holding = true;
+        sfx.play("pour");
+      } else this.release(target);
     });
     this.input.on("pointerup", () => {
       if (this.cfg.mode === "hold" && this.holding) this.release(target);
@@ -76,10 +83,12 @@ export class HoldGame extends BaseMinigame {
     if (this.fired) return;
     this.fired = true;
     this.holding = false;
+    this.stopLoop();
     const diff = Math.abs(this.fill - target);
     const tol = this.cfg.tolerance ?? 0.06;
     const result = diff <= tol ? 1 : Math.max(0, 1 - (diff - tol) * 3);
     if (result < 1) this.cameras.main.shake(120, 0.006);
+    sfx.play(result === 1 ? "ok" : "miss");
     this.progress(result);
     if (result < 1) this.finish();
   }
