@@ -31,18 +31,20 @@ export const W = 360;
 export const H = 640;
 
 /**
- * Pick a whole-number zoom in DEVICE pixels so pixel art and the bitmap font stay even, and
- * size the logical canvas to fill the viewport at that zoom. On phones the zoom matches the
- * devicePixelRatio (one game pixel per CSS pixel); on a 430-wide phone the canvas is 430
- * game pixels wide, on a 360-wide phone 360. Desktop gets a letterboxed 480x1000 max.
+ * Zoom so the 336px band that every screen's widest element fits in (330px cards) fills the
+ * device width, and size the logical canvas to the viewport at that zoom. A whole-number
+ * device zoom keeps pixel art perfectly even, so snap to one when it costs under 6%;
+ * otherwise take the fractional zoom, which reads bigger on phones. Desktop is letterboxed
+ * to 480x1000 max.
  */
+const MIN_W = 336;
 export function computeFit() {
   const dpr = window.devicePixelRatio || 1;
   const wd = window.innerWidth * dpr;
   const hd = window.innerHeight * dpr;
-  let z = Math.max(1, Math.round(wd / W));
-  while (z > 1 && wd / z < 300) z--; // never shrink the design below 300 logical px wide
-  while (z > 1 && hd / z < 560) z--; // ...or so short that the layout cannot fit
+  let z = Math.max(1, Math.min(wd / MIN_W, hd / H)); // never shorter than the design
+  const whole = Math.floor(z);
+  if (whole >= 1 && whole / z > 0.94) z = whole;
   const w = Math.min(480, Math.round(wd / z));
   const h = Math.min(1000, Math.round(hd / z));
   return { w, h, zoom: z / dpr };

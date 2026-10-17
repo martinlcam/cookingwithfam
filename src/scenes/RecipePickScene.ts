@@ -3,6 +3,27 @@ import { run } from "../state/store";
 import { dishSprite } from "../assets/food";
 import { bg, go, icon, panel, text, COLOR } from "../ui";
 
+/** Cut a single-line bitmap text to a pixel width, ending in "...". */
+function fitWidth(t: Phaser.GameObjects.BitmapText, max: number) {
+  let str = t.text;
+  while (t.width > max && str.length > 1) {
+    str = str.slice(0, -1).trimEnd();
+    t.setText(str + "...");
+  }
+}
+
+/** Drop trailing words from a wrapped bitmap text until it fits in `lines`, ending in "...". */
+function fitLines(t: Phaser.GameObjects.BitmapText, lines: number) {
+  const full = t.text;
+  const lineH = t.setText("X").height; // the font's real line height, not the nominal size
+  t.setText(full);
+  const words = full.split(" ");
+  while (t.height > lineH * lines + 2 && words.length > 1) {
+    words.pop();
+    t.setText(words.join(" ") + "...");
+  }
+}
+
 export class RecipePickScene extends Phaser.Scene {
   constructor() {
     super("RecipePick");
@@ -34,9 +55,11 @@ export class RecipePickScene extends Phaser.Scene {
         go(this, "Kitchen");
       });
       dishSprite(this, 56, y, r, 2);
-      const name = r.name.toUpperCase();
-      text(this, 100, y - 36, name.slice(0, 36), name.length > 25 ? 6 : 8, COLOR.pink, [0, 0.5]);
-      this.add.bitmapText(100, y - 20, "mama", r.description.length > 46 ? r.description.slice(0, 44).trimEnd() + "..." : r.description, 16).setMaxWidth(205);
+      // Title: one line, trimmed by measured width. Description: at most two wrapped lines.
+      const title = text(this, 100, y - 36, r.name.toUpperCase(), 8, COLOR.pink, [0, 0.5]);
+      fitWidth(title, 210);
+      const desc = this.add.bitmapText(100, y - 20, "mama", r.description, 16).setMaxWidth(210);
+      fitLines(desc, 2);
       text(this, 320, y + 36, `${r.steps.length} STEPS`, 6, COLOR.muted, [1, 0.5]);
       icon(this, 322, y + 6, "arrow_r", 1.2);
     });
