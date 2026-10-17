@@ -36,9 +36,27 @@ tinted at runtime. The look was modelled on the DS game's lettering; the shapes 
 `text()` uses gold for the default ink colour and tints white for any other colour; `label()`
 is always gold. Sizes snap to 16, 32 or 48 px so glyphs stay on integer pixels.
 
-## UI chrome, raw ingredients, tools, fx: generated
+## Raw ingredients: hand-drawn with pxl
 
-All remaining sprites are generated, not hand-drawn. One Python script bakes every icon,
+```
+node ~/.claude/skills/pxl-pixel-art/bin/pxl.js build tools/sprites/px/food.px.js
+python3 tools/sprites/gen.py
+```
+
+`tools/sprites/px/food.px.js` draws every raw ingredient in the pxl DSL (the `pxl-pixel-art`
+Claude skill, https://github.com/crsolver/claude-pxl): ~44px forms, four or five tones per
+material, two or three dithered `shade`/`light` passes for a soft falloff, a highlight streak,
+and a pale tinted halo as the outline. That is the look of the DS ingredient icons. `gen.py`
+prefers a pxl sprite over its generated one whenever `tools/sprites/px/out/sprites/<name>.png`
+exists: as drawn in the 64px atlas, box-downsampled for the 32px icons. The `out/` folder is
+gitignored; the `.px.js` is the source.
+
+To add or fix an ingredient: edit the sprite in `food.px.js`, rebuild with `--only name`, look
+at `tools/sprites/px/out/_preview/name.png`, then run `gen.py`.
+
+## UI chrome, tools, fx, dishes: generated
+
+Everything not covered above is generated, not hand-drawn. One Python script bakes every icon,
 panel and tile from shape primitives with a shared palette. Item blobs get a lit-volume
 shade: a top-left to bottom-right gradient in five bands, edge darkening, a placed specular
 highlight, and an outline in a darker shade of the fill rather than black. That is the look

@@ -75,9 +75,21 @@ def preview(groups, path, scale=4, cols=8):
         y += cell + label_h
     im.save(path)
 
+PX_DIR = os.path.join(ROOT, "tools", "sprites", "px", "out", "sprites")
+
+def px_override(name, size):
+    """Hand-drawn pxl sprite for this item, centred in a size x size frame. 64: as drawn; 32: box-downsampled."""
+    path = os.path.join(PX_DIR, name + ".png")
+    if not os.path.exists(path): return None
+    im = Image.open(path).convert("RGBA")
+    if size == 32: im = im.resize((max(1, im.width // 2), max(1, im.height // 2)), Image.BOX)
+    out = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    out.alpha_composite(im, ((size - im.width) // 2, (size - im.height) // 2))
+    return out
+
 def main():
-    items = [(n, render(n, 32, 32, fn)) for n, fn in ITEMS.items()]
-    items64 = [(n, render(n, 32, 32, fn, k=2)) for n, fn in ITEMS.items()]
+    items = [(n, px_override(n, 32) or render(n, 32, 32, fn)) for n, fn in ITEMS.items()]
+    items64 = [(n, px_override(n, 64) or render(n, 32, 32, fn, k=2)) for n, fn in ITEMS.items()]
     uis = [(n, render(n, w, h, fn)) for n, (w, h, fn) in UI.items()]
     write_atlas("items", items); write_atlas("items64", items64); write_atlas("ui", uis)
     with open(os.path.join(ROOT, "src", "assets", "frames.ts"), "w") as f:

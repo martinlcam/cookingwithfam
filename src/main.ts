@@ -26,7 +26,9 @@ export const game = new Phaser.Game({
   pixelArt: false,
   antialias: true,
   roundPixels: true,
-  scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
+  // Integer zoom only. FIT scales the canvas by a fraction, which smears the pixel art and
+  // makes the bitmap font uneven. MAX_ZOOM picks the largest whole multiple that fits.
+  scale: { mode: Phaser.Scale.NONE, zoom: Phaser.Scale.Zoom.MAX_ZOOM, autoCenter: Phaser.Scale.CENTER_BOTH },
   input: { activePointers: 2 },
   scene: [
     BootScene,
@@ -40,3 +42,10 @@ export const game = new Phaser.Game({
     ...MINIGAME_SCENES,
   ],
 });
+
+/** MAX_ZOOM is only computed at boot; keep the whole-number zoom in step with the window. */
+function fitZoom() {
+  const z = Math.max(1, Math.floor(Math.min(window.innerWidth / W, window.innerHeight / H)));
+  if (game.scale.zoom !== z) game.scale.setZoom(z);
+}
+window.addEventListener("resize", fitZoom);

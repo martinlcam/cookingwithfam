@@ -11,3 +11,6 @@ Cooking Mama.zip
 tools/raw/cartridge*/
 __pycache__/
 *.pyc
+
+# pxl build output (the .px.js is the source)
+tools/sprites/px/out/
