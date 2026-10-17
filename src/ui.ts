@@ -65,6 +65,29 @@ export function text(
   return t;
 }
 
+/** Cut a single-line bitmap text to a pixel width, ending in "...". */
+export function fitWidth(t: Txt, max: number) {
+  let str = t.text;
+  while (t.width > max && str.length > 1) {
+    str = str.slice(0, -1).trimEnd();
+    t.setText(str + "...");
+  }
+  return t;
+}
+
+/** Drop trailing words from a wrapped bitmap text until it fits in `lines`, ending in "...". */
+export function fitLines(t: Txt, lines: number) {
+  const full = t.text;
+  const lineH = t.setText("X").height; // the font's real line height, not the nominal size
+  t.setText(full);
+  const words = full.split(" ");
+  while (t.height > lineH * lines + 2 && words.length > 1) {
+    words.pop();
+    t.setText(words.join(" ") + "...");
+  }
+  return t;
+}
+
 /** Gold outlined text for buttons and headings. */
 export function label(scene: Phaser.Scene, x: number, y: number, str: string, size = 10): Txt {
   return scene.add.bitmapText(x, y, FONT_GOLD, str, px(size)).setOrigin(0.5).setCenterAlign();

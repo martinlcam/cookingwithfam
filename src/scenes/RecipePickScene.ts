@@ -1,28 +1,7 @@
 import Phaser from "phaser";
 import { run } from "../state/store";
 import { dishSprite } from "../assets/food";
-import { bg, go, icon, panel, text, COLOR } from "../ui";
-
-/** Cut a single-line bitmap text to a pixel width, ending in "...". */
-function fitWidth(t: Phaser.GameObjects.BitmapText, max: number) {
-  let str = t.text;
-  while (t.width > max && str.length > 1) {
-    str = str.slice(0, -1).trimEnd();
-    t.setText(str + "...");
-  }
-}
-
-/** Drop trailing words from a wrapped bitmap text until it fits in `lines`, ending in "...". */
-function fitLines(t: Phaser.GameObjects.BitmapText, lines: number) {
-  const full = t.text;
-  const lineH = t.setText("X").height; // the font's real line height, not the nominal size
-  t.setText(full);
-  const words = full.split(" ");
-  while (t.height > lineH * lines + 2 && words.length > 1) {
-    words.pop();
-    t.setText(words.join(" ") + "...");
-  }
-}
+import { bg, fitLines, fitWidth, go, icon, panel, text, COLOR } from "../ui";
 
 export class RecipePickScene extends Phaser.Scene {
   constructor() {

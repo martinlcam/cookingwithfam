@@ -4,7 +4,7 @@ import { formatQty } from "@shared/format";
 import { api } from "../api/client";
 import { run, saved } from "../state/store";
 import { itemFrame } from "../assets/items";
-import { bg, button, go, icon, item, panel, text, COLOR, type Txt } from "../ui";
+import { bg, button, fitLines, fitWidth, go, icon, item, panel, text, COLOR, type Txt } from "../ui";
 
 /** Toggle detected ingredients on/off and nudge quantities. No text input on purpose. */
 export class ConfirmScene extends Phaser.Scene {
@@ -34,7 +34,7 @@ export class ConfirmScene extends Phaser.Scene {
     this.list = this.add.container(0, 0);
     this.render();
 
-    this.status = text(this, 180, 548, "", 7);
+    this.status = text(this, 180, 546, "", 7);
     button(this, 180, 596, "FIND RECIPES", () => this.findRecipes(), 260, 48, "pink", "check");
   }
 
@@ -50,7 +50,7 @@ export class ConfirmScene extends Phaser.Scene {
         this.render();
       });
       const ic = item(this, 36, y, itemFrame(ing.name), 1.0).setAlpha(on ? 1 : 0.4);
-      const lbl = text(this, 58, y, formatQty(ing.qty, ing.unit, ing.name).slice(0, 22), 7, on ? COLOR.ink : COLOR.muted, [0, 0.5]);
+      const lbl = fitWidth(text(this, 58, y, formatQty(ing.qty, ing.unit, ing.name), 7, on ? COLOR.ink : COLOR.muted, [0, 0.5]), 192);
       const chk = icon(this, 262, y, on ? "check" : "cross", 1.2);
       const minus = icon(this, 292, y, "dot_pink", 2.8).setInteractive({ useHandCursor: true }).on("pointerup", () => {
         ing.qty = Math.max(1, ing.qty - 1); // 0 is "toggle it off", not an amount
@@ -66,6 +66,12 @@ export class ConfirmScene extends Phaser.Scene {
     });
   }
 
+  /** Two lines at most, wrapped above the button. */
+  private note(msg: string) {
+    this.status.setMaxWidth(300).setText(msg);
+    fitLines(this.status, 2);
+  }
+
   private async findRecipes() {
     const pantry: Pantry = { items: run.pantry!.items.filter((_, i) => this.enabled[i] && _.qty > 0) };
     if (pantry.items.length === 0) return this.status.setText("pick at least one");
@@ -75,7 +81,7 @@ export class ConfirmScene extends Phaser.Scene {
       const list = await api.recipes(pantry);
       if (list.recipes.length === 0) {
         // Nothing honest to cook. Keep the player here so they can rethink the pantry.
-        this.status.setText((list.note || "not much to cook with that. add a few more things?").slice(0, 90));
+        this.note(list.note || "not much to cook with that. add a few more things?");
         return;
       }
       run.recipes = list;
