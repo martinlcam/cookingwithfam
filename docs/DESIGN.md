@@ -81,7 +81,7 @@ arbitrary recipes playable.
 | Game engine | Phaser 3 (TypeScript) |
 | Build | Vite + `vite-plugin-pwa` |
 | Validation | Zod (shared schemas between client and server) |
-| Backend | Node + Hono, single service, serves `dist/` and `/api/*` |
+| Backend | Node + Hono with `@hono/zod-openapi`, single service, serves `dist/` and `/api/*`. OpenAPI 3.1 spec at `/api/openapi.json`, Swagger UI at `/api/docs` |
 | AI | Claude Sonnet 5.5 via the Anthropic SDK, structured output |
 | Hosting | Railway Free, personal workspace, Serverless on |
 | Storage | IndexedDB on device (via `idb-keyval` or similar) |

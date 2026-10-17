@@ -32,7 +32,8 @@ camera input needs HTTPS off localhost, so for phone testing use a tunnel
 
 ```
 shared/   verbs.ts (full minigame library) + schema.ts (zod, shared by both sides)
-server/   Hono: /api/classify (photos -> pantry), /api/recipes (pantry -> recipes)
+server/   Hono + zod-openapi: /api/classify (photos -> pantry), /api/recipes (pantry -> recipes)
+          spec at /api/openapi.json, Swagger UI at /api/docs
 src/      Phaser. scenes/ are the app screens, minigames/ are the verbs
 ```
 
