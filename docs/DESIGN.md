@@ -60,7 +60,7 @@ arbitrary recipes playable.
 | 3 | **Ship as a PWA.** | Camera is the entry point, so it must feel like a phone app. Installable from the browser, cached offline. |
 | 4 | **32x32 pixel art, nearest-neighbor, integer scale.** | Set `pixelArt: true` in the Phaser config. Author in Aseprite at true 32x32, render at 3x or 4x. |
 | 5 | **Mixed assets: free packs plus custom.** | Speed. But every free asset gets re-palettized in Aseprite to one shared palette and one outline rule before it enters the repo. Three art styles in one scene reads as cheap faster than anything else. |
-| 6 | **Bitmap font or Press Start 2P for all text.** | Smooth fonts over pixel sprites is the most common way these games look wrong. |
+| 6 | **Fredoka (Google Fonts, 600/700) for all text, white with a dark stroke on buttons.** | Changed 2026-10-17: Press Start 2P looked like an NES game, not Cooking Mama. The DS games put smooth rounded type over pixel sprites, so the renderer runs antialiased and only the atlases are NEAREST. |
 | 7 | **Camera via hidden `<input type="file" accept="image/*" capture="environment">`** triggered from a Phaser button, called once per photo. | Phaser cannot open the camera. This works on iOS and Android without any framework. Multiple photos are collected into one classify request. |
 | 8 | **Ingredient editing is toggles and steppers, not text fields.** | Phaser's text input is weak, and icon toggles are more Cooking Mama anyway. |
 | 9 | **Claude Opus 5.5 for both calls**, overridable with `CLAUDE_MODEL` (Sonnet 5.5 or Haiku 5.5 if cost matters). | Vision for the pantry photos at low effort, text for recipe generation at medium. Both use `messages.parse` with a Zod output format, so an unknown verb never gets through. |
@@ -69,6 +69,9 @@ arbitrary recipes playable.
 | 12 | **No database for the hackathon.** Pantry, recipes, and scores in IndexedDB on the device. | Postgres idles at 100 to 150 MB RAM, which alone blows the Free credit. Upgrade path: SQLite on a 0.5 GB volume in the same service, then Railway Hobby ($5/mo) with Postgres if accounts or shared recipes are ever needed. |
 | 13 | **Whole verb library in the schema from day one, placeholder scene for unbuilt verbs.** | The model can use all ~43 verbs immediately. Real scenes replace the placeholder in priority order, one per input type first. |
 | 14 | **Shared base minigame scene.** | Every minigame extends one class that owns the timer, score meter, and Mama reaction. A persistent HUD scene runs on top so minigames never redraw it. |
+| 15 | **oxlint + tsc + Vite build in GitHub Actions, then a `deploy` job runs `railway up` on push to main.** | oxlint is fast and has no Phaser-specific needs. Deploy only happens after checks pass. The GitHub source is disconnected from the Railway service, so CI is the only deploy path. Needs a `RAILWAY_TOKEN` project token in GitHub secrets. Do not use watch patterns to block pushes: they also block `railway up`. |
+| 16 | **Conventional commits.** | `feat:`, `fix:`, `chore:`, `docs:`, `ci:`. |
+| 17 | **OpenAPI via `@hono/zod-openapi`, not tsoa.** | tsoa targets Express/Koa, needs decorators and a codegen step, and derives types from TS interfaces instead of our shared Zod schemas. Hono's own layer takes the Zod schemas directly: spec at `/api/openapi.json`, Swagger UI at `/api/docs`, automatic request validation. |
 
 ---
 
@@ -86,7 +89,7 @@ arbitrary recipes playable.
 | Hosting | Railway Free, personal workspace, Serverless on |
 | Storage | IndexedDB on device (via `idb-keyval` or similar) |
 | Art | Aseprite, 32x32, one shared palette, texture atlas via free-tex-packer |
-| Font | Press Start 2P or a custom bitmap font |
+| Font | Fredoka via Google Fonts, see `src/ui.ts` |
 
 ### Scene structure
 
