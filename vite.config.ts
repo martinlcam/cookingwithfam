@@ -9,6 +9,9 @@ export default defineConfig({
     proxy: { "/api": "http://localhost:3000" },
   },
   build: { target: "es2022" },
+  // Stamped into asset URLs so a bundle can only ever load the atlas sheets built with it.
+  // Without this a cached PNG and a fresh JSON (or vice versa) index the wrong sprites.
+  define: { __BUILD_ID__: JSON.stringify(Date.now().toString(36)) },
   plugins: [
     VitePWA({
       registerType: "autoUpdate",
