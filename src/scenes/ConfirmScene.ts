@@ -1,13 +1,15 @@
 import Phaser from "phaser";
 import type { Pantry } from "@shared/schema";
+import { formatQty } from "@shared/format";
 import { api } from "../api/client";
 import { run, saved } from "../state/store";
-import { button, go, text, PALETTE } from "../ui";
+import { itemFrame } from "../assets/items";
+import { bg, button, go, icon, item, panel, text, COLOR, type Txt } from "../ui";
 
 /** Toggle detected ingredients on/off and nudge quantities. No text input on purpose. */
 export class ConfirmScene extends Phaser.Scene {
   private enabled: boolean[] = [];
-  private status!: Phaser.GameObjects.Text;
+  private status!: Txt;
   private list!: Phaser.GameObjects.Container;
 
   constructor() {
@@ -16,44 +18,51 @@ export class ConfirmScene extends Phaser.Scene {
 
   async create(data: { useSaved?: boolean }) {
     this.cameras.main.fadeIn(200);
+    bg(this, "bg_tile_blue");
     if (data?.useSaved) run.pantry = (await saved.lastPantry()) ?? null;
     if (!run.pantry || run.pantry.items.length === 0) {
-      text(this, 180, 300, "nothing found.\ntry more photos", 9);
-      button(this, 180, 400, "BACK", () => go(this, "Pantry"));
+      panel(this, 180, 300, 280, 120, "panel");
+      text(this, 180, 290, "nothing found.\ntry more photos", 9);
+      button(this, 180, 400, "BACK", () => go(this, "Pantry"), 200, 44, "yellow", "arrow_l");
       return;
     }
 
-    text(this, 180, 40, "WHAT I SEE", 14, "#c252e1");
-    text(this, 180, 70, "tap to toggle, +/- for amount", 7, "#6ecbf5");
+    panel(this, 180, 50, 320, 64, "panel");
+    text(this, 180, 42, "WHAT I SEE", 13, COLOR.pink);
+    text(this, 180, 64, "tap to toggle, +/- for amount", 6, COLOR.muted);
     this.enabled = run.pantry.items.map((i) => i.confidence >= 0.5);
     this.list = this.add.container(0, 0);
     this.render();
 
-    this.status = text(this, 180, 540, "", 8);
-    button(this, 180, 590, "FIND RECIPES", () => this.findRecipes());
+    this.status = text(this, 180, 548, "", 8);
+    button(this, 180, 596, "FIND RECIPES", () => this.findRecipes(), 260, 48, "pink", "check");
   }
 
   private render() {
     this.list.removeAll(true);
     const items = run.pantry!.items;
-    items.slice(0, 12).forEach((item, i) => {
-      const y = 110 + i * 34;
+    items.slice(0, 12).forEach((ing, i) => {
+      const y = 112 + i * 36;
       const on = this.enabled[i]!;
-      const row = this.add.rectangle(130, y, 220, 28, on ? PALETTE.dark : PALETTE.bg).setStrokeStyle(2, on ? PALETTE.cyan : 0x444444);
-      row.setInteractive().on("pointerup", () => {
+      const row = panel(this, 180, y, 330, 34, on ? "card" : "panel_white");
+      row.setInteractive({ useHandCursor: true }).on("pointerup", () => {
         this.enabled[i] = !this.enabled[i];
         this.render();
       });
-      const label = text(this, 30, y, `${item.qty}${item.unit === "pcs" ? "" : item.unit} ${item.name}`, 8, on ? "#fff1d6" : "#666666", [0, 0.5]);
-      const minus = text(this, 270, y, "-", 12, "#c252e1").setInteractive().on("pointerup", () => {
-        item.qty = Math.max(0, item.qty - 1);
+      const ic = item(this, 36, y, itemFrame(ing.name), 1.0).setAlpha(on ? 1 : 0.4);
+      const lbl = text(this, 58, y, formatQty(ing.qty, ing.unit, ing.name).slice(0, 22), 7, on ? COLOR.ink : COLOR.muted, [0, 0.5]);
+      const chk = icon(this, 262, y, on ? "check" : "cross", 1.2);
+      const minus = icon(this, 292, y, "dot_pink", 2.8).setInteractive({ useHandCursor: true }).on("pointerup", () => {
+        ing.qty = Math.max(0, ing.qty - 1);
         this.render();
       });
-      const plus = text(this, 310, y, "+", 12, "#6ecbf5").setInteractive().on("pointerup", () => {
-        item.qty += 1;
+      const minusGlyph = icon(this, 292, y, "minus", 1);
+      const plus = icon(this, 322, y, "dot_pink", 2.8).setInteractive({ useHandCursor: true }).on("pointerup", () => {
+        ing.qty += 1;
         this.render();
       });
-      this.list.add([row, label, minus, plus]);
+      const plusGlyph = icon(this, 322, y, "plus", 1);
+      this.list.add([row, ic, lbl, chk, minus, minusGlyph, plus, plusGlyph]);
     });
   }
 

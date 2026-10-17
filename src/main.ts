@@ -22,7 +22,9 @@ export const game = new Phaser.Game({
   width: W,
   height: H,
   backgroundColor: "#1a1a1a",
-  pixelArt: true,
+  // Smooth text over nearest-neighbour sprites, like the DS games. Atlases get NEAREST in Boot.
+  pixelArt: false,
+  antialias: true,
   roundPixels: true,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
   input: { activePointers: 2 },

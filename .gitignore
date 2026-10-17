@@ -4,3 +4,8 @@ dev-dist/
 .env
 *.log
 .DS_Store
+
+# Cooking Mama cartridge dump and anything extracted from it: reference only, never commit
+Cooking Mama.zip
+*.nds
+tools/raw/cartridge*/

@@ -1,0 +1,1694 @@
+{
+ "frames": {
+  "tumbler": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 39,
+    "h": 86
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 39,
+    "h": 86
+   },
+   "sourceSize": {
+    "w": 39,
+    "h": 86
+   }
+  },
+  "moka_pot": {
+   "frame": {
+    "x": 40,
+    "y": 0,
+    "w": 61,
+    "h": 77
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 61,
+    "h": 77
+   },
+   "sourceSize": {
+    "w": 61,
+    "h": 77
+   }
+  },
+  "pickle_jar": {
+   "frame": {
+    "x": 102,
+    "y": 0,
+    "w": 32,
+    "h": 58
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 58
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 58
+   }
+  },
+  "oreo_milkshake": {
+   "frame": {
+    "x": 135,
+    "y": 0,
+    "w": 25,
+    "h": 58
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 25,
+    "h": 58
+   },
+   "sourceSize": {
+    "w": 25,
+    "h": 58
+   }
+  },
+  "soft_ice_cream": {
+   "frame": {
+    "x": 161,
+    "y": 0,
+    "w": 28,
+    "h": 57
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 57
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 57
+   }
+  },
+  "gumball_machine": {
+   "frame": {
+    "x": 190,
+    "y": 0,
+    "w": 32,
+    "h": 54
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 54
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 54
+   }
+  },
+  "milk_shake": {
+   "frame": {
+    "x": 223,
+    "y": 0,
+    "w": 24,
+    "h": 53
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 53
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 53
+   }
+  },
+  "matcha": {
+   "frame": {
+    "x": 248,
+    "y": 0,
+    "w": 36,
+    "h": 52
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 52
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 52
+   }
+  },
+  "champagne_glass": {
+   "frame": {
+    "x": 285,
+    "y": 0,
+    "w": 17,
+    "h": 52
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 17,
+    "h": 52
+   },
+   "sourceSize": {
+    "w": 17,
+    "h": 52
+   }
+  },
+  "red_wine": {
+   "frame": {
+    "x": 303,
+    "y": 0,
+    "w": 27,
+    "h": 51
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 27,
+    "h": 51
+   },
+   "sourceSize": {
+    "w": 27,
+    "h": 51
+   }
+  },
+  "coffee": {
+   "frame": {
+    "x": 331,
+    "y": 0,
+    "w": 32,
+    "h": 47
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 47
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 47
+   }
+  },
+  "honey": {
+   "frame": {
+    "x": 364,
+    "y": 0,
+    "w": 32,
+    "h": 45
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 45
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 45
+   }
+  },
+  "coca_cola": {
+   "frame": {
+    "x": 397,
+    "y": 0,
+    "w": 26,
+    "h": 43
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 26,
+    "h": 43
+   },
+   "sourceSize": {
+    "w": 26,
+    "h": 43
+   }
+  },
+  "lemonade": {
+   "frame": {
+    "x": 424,
+    "y": 0,
+    "w": 32,
+    "h": 42
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 42
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 42
+   }
+  },
+  "martini": {
+   "frame": {
+    "x": 457,
+    "y": 0,
+    "w": 31,
+    "h": 41
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 31,
+    "h": 41
+   },
+   "sourceSize": {
+    "w": 31,
+    "h": 41
+   }
+  },
+  "soda": {
+   "frame": {
+    "x": 0,
+    "y": 87,
+    "w": 24,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 40
+   }
+  },
+  "cherry_jelly": {
+   "frame": {
+    "x": 25,
+    "y": 87,
+    "w": 32,
+    "h": 34
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 34
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 34
+   }
+  },
+  "lava_cake": {
+   "frame": {
+    "x": 58,
+    "y": 87,
+    "w": 32,
+    "h": 34
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 34
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 34
+   }
+  },
+  "panna_cotta": {
+   "frame": {
+    "x": 91,
+    "y": 87,
+    "w": 32,
+    "h": 34
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 34
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 34
+   }
+  },
+  "moon_cake": {
+   "frame": {
+    "x": 124,
+    "y": 87,
+    "w": 30,
+    "h": 34
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 30,
+    "h": 34
+   },
+   "sourceSize": {
+    "w": 30,
+    "h": 34
+   }
+  },
+  "simit": {
+   "frame": {
+    "x": 155,
+    "y": 87,
+    "w": 44,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 32
+   }
+  },
+  "taco": {
+   "frame": {
+    "x": 200,
+    "y": 87,
+    "w": 36,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 32
+   }
+  },
+  "cream_puff": {
+   "frame": {
+    "x": 237,
+    "y": 87,
+    "w": 34,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 34,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 34,
+    "h": 32
+   }
+  },
+  "macaron": {
+   "frame": {
+    "x": 272,
+    "y": 87,
+    "w": 34,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 34,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 34,
+    "h": 32
+   }
+  },
+  "baguette": {
+   "frame": {
+    "x": 307,
+    "y": 87,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "birthday_cake": {
+   "frame": {
+    "x": 340,
+    "y": 87,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "blueberry_tart": {
+   "frame": {
+    "x": 373,
+    "y": 87,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "bread": {
+   "frame": {
+    "x": 406,
+    "y": 87,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "caprese_crostini": {
+   "frame": {
+    "x": 439,
+    "y": 87,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "carrot_cake": {
+   "frame": {
+    "x": 472,
+    "y": 87,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "chocolate_cake": {
+   "frame": {
+    "x": 0,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "chocolate_mousse": {
+   "frame": {
+    "x": 33,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "christmas_pudding": {
+   "frame": {
+    "x": 66,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "creme_brulee": {
+   "frame": {
+    "x": 99,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "croissant": {
+   "frame": {
+    "x": 132,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "cup_cake": {
+   "frame": {
+    "x": 165,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "dumplings": {
+   "frame": {
+    "x": 198,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "ebi_nigiri": {
+   "frame": {
+    "x": 231,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "egg_toast": {
+   "frame": {
+    "x": 264,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "gunkan_maki": {
+   "frame": {
+    "x": 297,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "ice_cream": {
+   "frame": {
+    "x": 330,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "ice_cream_sandwich": {
+   "frame": {
+    "x": 363,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "khachapuri": {
+   "frame": {
+    "x": 396,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "lasagna": {
+   "frame": {
+    "x": 429,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "latte": {
+   "frame": {
+    "x": 462,
+    "y": 128,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "lemon_cheesecake": {
+   "frame": {
+    "x": 0,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "maki_sushi_roll": {
+   "frame": {
+    "x": 33,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "mango_cream_roll": {
+   "frame": {
+    "x": 66,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "matcha_tiramisu": {
+   "frame": {
+    "x": 99,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "onigiri": {
+   "frame": {
+    "x": 132,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "pizza": {
+   "frame": {
+    "x": 165,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "pudding": {
+   "frame": {
+    "x": 198,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "pumpkin_pie": {
+   "frame": {
+    "x": 231,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "pumpkin_pie_whole": {
+   "frame": {
+    "x": 264,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "ramen_bowl": {
+   "frame": {
+    "x": 297,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "raspberry_napoleon": {
+   "frame": {
+    "x": 330,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "raspberry_pie": {
+   "frame": {
+    "x": 363,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "red_velvet_cake": {
+   "frame": {
+    "x": 396,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "red_velvet_mini_cake": {
+   "frame": {
+    "x": 429,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "red_velvet_slice": {
+   "frame": {
+    "x": 462,
+    "y": 161,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "red_velvet_slice_2": {
+   "frame": {
+    "x": 0,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "salmon_nigiri": {
+   "frame": {
+    "x": 33,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "sandwich": {
+   "frame": {
+    "x": 66,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "sandwich_cookie": {
+   "frame": {
+    "x": 99,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "strawberry_cake": {
+   "frame": {
+    "x": 132,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "strawberry_cake_whole": {
+   "frame": {
+    "x": 165,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "strawberry_cheesecake": {
+   "frame": {
+    "x": 198,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "sushi": {
+   "frame": {
+    "x": 231,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "swiss_roll": {
+   "frame": {
+    "x": 264,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "tiramisu": {
+   "frame": {
+    "x": 297,
+    "y": 194,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "strawberry_sando": {
+   "frame": {
+    "x": 330,
+    "y": 194,
+    "w": 25,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 25,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 25,
+    "h": 32
+   }
+  },
+  "tea_pot": {
+   "frame": {
+    "x": 356,
+    "y": 194,
+    "w": 36,
+    "h": 31
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 31
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 31
+   }
+  },
+  "brigadeiro": {
+   "frame": {
+    "x": 393,
+    "y": 194,
+    "w": 34,
+    "h": 31
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 34,
+    "h": 31
+   },
+   "sourceSize": {
+    "w": 34,
+    "h": 31
+   }
+  },
+  "chocolate_caramel_doughnut": {
+   "frame": {
+    "x": 428,
+    "y": 194,
+    "w": 34,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 34,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 34,
+    "h": 30
+   }
+  },
+  "glazed_doughnut": {
+   "frame": {
+    "x": 463,
+    "y": 194,
+    "w": 34,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 34,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 34,
+    "h": 30
+   }
+  },
+  "tea": {
+   "frame": {
+    "x": 0,
+    "y": 227,
+    "w": 32,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 30
+   }
+  },
+  "baklava": {
+   "frame": {
+    "x": 33,
+    "y": 227,
+    "w": 32,
+    "h": 29
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 29
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 29
+   }
+  },
+  "kunafa": {
+   "frame": {
+    "x": 66,
+    "y": 227,
+    "w": 32,
+    "h": 26
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 26
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 26
+   }
+  },
+  "patty": {
+   "frame": {
+    "x": 99,
+    "y": 227,
+    "w": 32,
+    "h": 18
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 18
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 18
+   }
+  },
+  "bun_top": {
+   "frame": {
+    "x": 132,
+    "y": 227,
+    "w": 32,
+    "h": 17
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 17
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 17
+   }
+  },
+  "cheese_slice": {
+   "frame": {
+    "x": 165,
+    "y": 227,
+    "w": 32,
+    "h": 17
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 17
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 17
+   }
+  },
+  "tomato_slice": {
+   "frame": {
+    "x": 198,
+    "y": 227,
+    "w": 32,
+    "h": 17
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 17
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 17
+   }
+  },
+  "lettuce_leaf": {
+   "frame": {
+    "x": 231,
+    "y": 227,
+    "w": 32,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 16
+   }
+  },
+  "bun_bottom": {
+   "frame": {
+    "x": 264,
+    "y": 227,
+    "w": 32,
+    "h": 9
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 9
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 9
+   }
+  }
+ },
+ "meta": {
+  "app": "tools/sprites/gen.py",
+  "image": "food.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 512,
+   "h": 257
+  },
+  "scale": "1"
+ }
+}

@@ -7,22 +7,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Cooking With Fam</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
     <style>
       html, body { margin: 0; padding: 0; background: #1a1a1a; height: 100%; overflow: hidden; }
       #game { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
       canvas { image-rendering: pixelated; image-rendering: crisp-edges; touch-action: none; }
       /* Hidden camera input, triggered from Phaser. */
       #camera-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-      /* Preload the pixel font so Phaser text uses it on first draw. */
-      #font-preload { position: absolute; left: -9999px; font-family: "Press Start 2P"; }
     </style>
   </head>
   <body>
     <div id="game"></div>
     <input id="camera-input" type="file" accept="image/*" capture="environment" />
-    <span id="font-preload">.</span>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

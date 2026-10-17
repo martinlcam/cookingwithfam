@@ -1,7 +1,8 @@
 import Phaser from "phaser";
 import { run } from "../state/store";
 import { sceneKeyFor } from "../minigames/registry";
-import { text, go } from "../ui";
+import { itemFrame } from "../assets/items";
+import { bg, hero, icon, panel, text, go, COLOR } from "../ui";
 
 /**
  * Hub that walks through the recipe steps. Launches each minigame on top of
@@ -22,15 +23,34 @@ export class KitchenScene extends Phaser.Scene {
       return;
     }
 
-    text(this, 180, 40, recipe.name.toUpperCase(), 10, "#c252e1");
-    text(this, 180, 70, `step ${run.stepIndex + 1} / ${recipe.steps.length}`, 7, "#6ecbf5");
-    text(this, 180, 300, step.caption.toUpperCase(), 12);
-    text(this, 180, 340, "tap to start", 7, "#6ecbf5");
+    bg(this, "bg_tile");
+    this.add.tileSprite(180, 560, 360, 160, "ui", "bg_counter").setDepth(-9);
+    this.add.tileSprite(180, 484, 360, 16, "ui", "counter_edge").setDepth(-9);
+
+    panel(this, 180, 50, 320, 64, "panel");
+    text(this, 180, 42, recipe.name.toUpperCase().slice(0, 24), 9, COLOR.pink);
+    text(this, 180, 64, `step ${run.stepIndex + 1} / ${recipe.steps.length}`, 7, COLOR.muted);
+
+    // Step dots.
+    recipe.steps.forEach((_, i) => {
+      const x = 180 + (i - (recipe.steps.length - 1) / 2) * 18;
+      icon(this, x, 96, i < run.stepIndex ? "star" : i === run.stepIndex ? "dot_pink" : "dot_grey", i === run.stepIndex ? 2 : 1);
+    });
+
+    const sprite = hero(this, 180, 300, itemFrame(step.item), 2);
+    this.add.image(180, 365, "ui", "shadow").setAlpha(0.25).setScale(2, 1).setDepth(-1);
+    this.tweens.add({ targets: sprite, y: 292, duration: 600, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
+
+    panel(this, 180, 420, 300, 70, "bubble");
+    this.add.image(180, 462, "ui", "bubble_tail").setFlipY(true).setScale(1.5);
+    text(this, 180, 412, step.caption.toUpperCase(), 10);
+    text(this, 180, 436, "tap to start", 6, COLOR.muted);
 
     if (!this.scene.isActive("HUD")) this.scene.launch("HUD");
 
     this.input.once("pointerup", () => {
       this.scene.launch(sceneKeyFor(step.verb), { step });
+      this.scene.bringToTop("HUD");
       this.scene.sleep();
     });
 

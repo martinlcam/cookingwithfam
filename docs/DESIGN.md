@@ -58,9 +58,9 @@ arbitrary recipes playable.
 | 1 | **All-Phaser, no React.** Every screen including menus is a Phaser Scene. | One canvas, one input system, one loop. No DOM tug of war, no loading hitch between "website" screens and "game" screens. Menus feel like part of the game, which is the Cooking Mama charm. |
 | 2 | **Vite + TypeScript + Phaser 3**, no Next.js. | No SSR, no hydration, nothing to fight. `vite-plugin-pwa` handles the manifest and service worker. |
 | 3 | **Ship as a PWA.** | Camera is the entry point, so it must feel like a phone app. Installable from the browser, cached offline. |
-| 4 | **32x32 pixel art, nearest-neighbor, integer scale.** | Set `pixelArt: true` in the Phaser config. Author in Aseprite at true 32x32, render at 3x or 4x. |
+| 4 | **32x32 icons plus 64x64 hero sprites, nearest-neighbor, integer scale.** | Generated from one definition at two scales (`tools/sprites/gen.py`). Smooth text over NEAREST sprites, see docs/ART.md. |
 | 5 | **Mixed assets: free packs plus custom.** | Speed. But every free asset gets re-palettized in Aseprite to one shared palette and one outline rule before it enters the repo. Three art styles in one scene reads as cheap faster than anything else. |
-| 6 | **Fredoka (Google Fonts, 600/700) for all text, white with a dark stroke on buttons.** | Changed 2026-10-17: Press Start 2P looked like an NES game, not Cooking Mama. The DS games put smooth rounded type over pixel sprites, so the renderer runs antialiased and only the atlases are NEAREST. |
+| 6 | **Our own bitmap font for all text** (`public/assets/font/mama*.xml`, glyphs in `tools/font/glyphs.py`). | Changed 2026-10-17: Press Start 2P and Fredoka both looked wrong. Drawn in the style of the DS lettering, original shapes, so it can ship. |
 | 7 | **Camera via hidden `<input type="file" accept="image/*" capture="environment">`** triggered from a Phaser button, called once per photo. | Phaser cannot open the camera. This works on iOS and Android without any framework. Multiple photos are collected into one classify request. |
 | 8 | **Ingredient editing is toggles and steppers, not text fields.** | Phaser's text input is weak, and icon toggles are more Cooking Mama anyway. |
 | 9 | **Claude Opus 5.5 for both calls**, overridable with `CLAUDE_MODEL` (Sonnet 5.5 or Haiku 5.5 if cost matters). | Vision for the pantry photos at low effort, text for recipe generation at medium. Both use `messages.parse` with a Zod output format, so an unknown verb never gets through. |
@@ -89,7 +89,7 @@ arbitrary recipes playable.
 | Hosting | Railway Free, personal workspace, Serverless on |
 | Storage | IndexedDB on device (via `idb-keyval` or similar) |
 | Art | Aseprite, 32x32, one shared palette, texture atlas via free-tex-packer |
-| Font | Fredoka via Google Fonts, see `src/ui.ts` |
+| Font | Own bitmap font, `tools/font/build.py` |
 
 ### Scene structure
 

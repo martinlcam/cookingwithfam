@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { button, go, text, PALETTE } from "../ui";
+import { bg, button, go, hero, icon, panel, text, COLOR } from "../ui";
 import { resetRun } from "../state/store";
 
 export class TitleScene extends Phaser.Scene {
@@ -9,16 +9,32 @@ export class TitleScene extends Phaser.Scene {
 
   create() {
     this.cameras.main.fadeIn(200);
-    resetRun();
+    if (!location.search.includes("demo")) resetRun();
+    bg(this, "bg_tile");
 
-    // Placeholder "Mama": swap for a sprite once drawn.
-    this.add.rectangle(180, 200, 96, 96, PALETTE.purple).setStrokeStyle(4, PALETTE.cyan);
-    text(this, 180, 200, ":)", 24);
+    // Counter top along the bottom third, like the DS kitchen.
+    this.add.tileSprite(180, 560, 360, 160, "ui", "bg_counter").setDepth(-9);
+    this.add.tileSprite(180, 484, 360, 16, "ui", "counter_edge").setDepth(-9);
 
-    text(this, 180, 300, "COOKING\nWITH FAM", 20, "#c252e1");
-    text(this, 180, 350, "snap your pantry, cook what you have", 7, "#6ecbf5");
+    // Title card. Mama's portrait goes above it once drawn.
+    panel(this, 180, 180, 300, 150, "panel");
+    text(this, 180, 150, "COOKING", 22);
+    text(this, 180, 190, "WITH FAM", 22);
+    text(this, 180, 222, "snap your pantry, cook what you have", 6, COLOR.muted);
+    icon(this, 50, 120, "star", 2);
+    icon(this, 310, 120, "star", 2);
+    icon(this, 40, 240, "heart", 2);
+    icon(this, 320, 240, "heart", 2);
 
-    button(this, 180, 440, "TAKE PHOTOS", () => go(this, "Pantry"));
-    button(this, 180, 500, "LAST PANTRY", () => go(this, "Confirm", { useSaved: true }));
+    // A few props on the counter so the screen isn't empty before Mama exists.
+    hero(this, 60, 540, "pot", 1.5);
+    hero(this, 150, 548, "cutting_board", 1.5);
+    hero(this, 150, 530, "tomato", 1);
+    hero(this, 250, 540, "pan", 1.5);
+    hero(this, 320, 545, "bowl", 1.25);
+
+    button(this, 180, 330, "TAKE PHOTOS", () => go(this, "Pantry"), 260, 52, "pink", "camera");
+    button(this, 180, 400, "LAST PANTRY", () => go(this, "Confirm", { useSaved: true }), 260, 48, "blue");
+
   }
 }
