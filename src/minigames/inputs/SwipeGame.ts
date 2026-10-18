@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import type { ItemFrame } from "../../assets/frames";
 import { itemFrame } from "../../assets/items";
-import { hero, item, panel, text, COLOR } from "../../ui";
+import { hero, item, text, COLOR } from "../../ui";
 import { BaseMinigame } from "../BaseMinigame";
 import { Cuttable, Peelable, shaveBits, strokeLine } from "./effects";
 
@@ -58,7 +58,8 @@ export class SwipeGame extends BaseMinigame {
     this.effect = this.cfg.effect ?? effectFor(this.step.verb);
     const frame = itemFrame(this.step.item);
 
-    panel(this, CX, 380, 310, 150, "board");
+    // the big hand-pixelled board, 158x70 at 2x
+    this.add.image(CX, 380, "ui", "board_big").setScale(2);
     if (this.cfg.surface && this.cfg.surface !== "cutting_board") item(this, CX, 380, this.cfg.surface, 5).setAlpha(0.9);
     this.add.image(CX, CY + 44, "ui", "shadow").setAlpha(0.2).setScale(3, 1.2);
     if (this.effect === "cut") {
