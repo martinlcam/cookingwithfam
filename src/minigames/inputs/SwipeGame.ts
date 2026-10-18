@@ -53,7 +53,8 @@ export class SwipeGame extends BaseMinigame {
   setup() {
     this.strokes = 0;
     const need = this.params.count ?? 5;
-    const minLen = this.cfg.minLen ?? 40;
+    // harder levels want longer, more deliberate strokes
+    const minLen = Math.min(120, (this.cfg.minLen ?? 40) / this.difficulty.tolerance);
     this.effect = this.cfg.effect ?? effectFor(this.step.verb);
     const frame = itemFrame(this.step.item);
 
