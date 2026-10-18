@@ -22,12 +22,13 @@ export class BootScene extends Phaser.Scene {
     // Built by `python3 tools/sprites/pack.py` from the PixelFoodThemedAssets pack.
     this.load.atlas("food", v("assets/food.png"), v("assets/food.json"));
     // Built by `python3 tools/font/build.py`.
+    for (const d of ["easy", "moderate", "hard", "extra_hard", "impossible"]) this.load.image(`diff_${d}`, v(`assets/difficulty/${d}.png`));
     this.load.bitmapFont("mama", v("assets/font/mama.png"), v("assets/font/mama.xml"));
     this.load.bitmapFont("mama_white", v("assets/font/mama_white.png"), v("assets/font/mama_white.xml"));
   }
 
   create() {
-    for (const key of ["items", "items64", "ui", "food", "mama", "mama_white"]) this.textures.get(key).setFilter(Phaser.Textures.FilterMode.NEAREST);
+    for (const key of ["items", "items64", "ui", "food", "mama", "mama_white", "diff_easy", "diff_moderate", "diff_hard", "diff_extra_hard", "diff_impossible"]) this.textures.get(key).setFilter(Phaser.Textures.FilterMode.NEAREST);
     this.scene.start(demoStart() ?? "Title");
   }
 }

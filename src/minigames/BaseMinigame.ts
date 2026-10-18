@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import type { Step } from "@shared/schema";
 import { VERB_BY_NAME } from "@shared/verbs";
+import { DIFFICULTY_BY_ID, scaleParams, type DifficultyDef } from "@shared/difficulty";
 import { dishSprite } from "../assets/food";
 import { run } from "../state/store";
 import { bg, floor, icon, panel, text, COLOR } from "../ui";
@@ -15,6 +16,8 @@ import { sfx, type LoopName } from "../sfx";
 export abstract class BaseMinigame extends Phaser.Scene {
   protected step!: Step;
   protected params!: Record<string, number>;
+  /** The chosen difficulty. Scenes multiply their timing windows by `tolerance` and marker speeds by `speed`. */
+  protected difficulty!: DifficultyDef;
   protected seconds = 10;
   private elapsed = 0;
   private done = false;
@@ -23,8 +26,10 @@ export abstract class BaseMinigame extends Phaser.Scene {
 
   init(data: { step: Step }) {
     this.step = data.step;
-    this.params = { ...VERB_BY_NAME[data.step.verb]?.params, ...data.step.params };
-    this.seconds = this.params.seconds ?? 10;
+    this.difficulty = DIFFICULTY_BY_ID[run.difficulty] ?? DIFFICULTY_BY_ID.moderate!;
+    // counts up and seconds down according to the difficulty; windows are scaled by the scene
+    this.params = scaleParams({ ...VERB_BY_NAME[data.step.verb]?.params, ...data.step.params }, this.difficulty);
+    this.seconds = this.params.seconds ?? Math.max(3, Math.round(10 * this.difficulty.time));
     this.elapsed = 0;
     this.done = false;
     this.frac = 0;
@@ -85,7 +90,7 @@ export abstract class BaseMinigame extends Phaser.Scene {
   /** Score = progress, with a small bonus for finishing fast. Subclasses may override. */
   protected score(): number {
     const speed = this.frac >= 1 ? Math.max(0, 1 - this.elapsed / this.seconds) * 15 : 0;
-    return Math.min(100, this.frac * 85 + speed);
+    return Math.min(100, (this.frac * 85 + speed) * this.difficulty.bonus);
   }
 
   protected finish() {

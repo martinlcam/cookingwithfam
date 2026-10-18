@@ -31,7 +31,7 @@ export class RecipePickScene extends Phaser.Scene {
         run.recipe = r;
         run.stepIndex = 0;
         run.scores = [];
-        go(this, "Kitchen");
+        go(this, "Difficulty");
       });
       dishSprite(this, 56, y, r, 2);
       // Title: one line, trimmed by measured width. Description: at most two wrapped lines.

@@ -14,3 +14,6 @@ __pycache__/
 
 # pxl build output (the .px.js is the source)
 tools/sprites/px/out/
+
+# difficulty portraits live in public/assets/difficulty; the drop folder is just an inbox
+difficulty sprites/

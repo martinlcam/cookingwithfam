@@ -6,6 +6,7 @@ import { TitleScene } from "./scenes/TitleScene";
 import { PantryScene } from "./scenes/PantryScene";
 import { ConfirmScene } from "./scenes/ConfirmScene";
 import { RecipePickScene } from "./scenes/RecipePickScene";
+import { DifficultyScene } from "./scenes/DifficultyScene";
 import { KitchenScene } from "./scenes/KitchenScene";
 import { HUDScene } from "./scenes/HUDScene";
 import { ResultScene } from "./scenes/ResultScene";
@@ -73,6 +74,7 @@ export const game = new Phaser.Game({
     PantryScene,
     ConfirmScene,
     RecipePickScene,
+    DifficultyScene,
     KitchenScene,
     HUDScene,
     ResultScene,

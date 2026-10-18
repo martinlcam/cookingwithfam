@@ -3,6 +3,7 @@ import { run } from "../state/store";
 import { sceneKeyFor } from "../minigames/registry";
 import { itemFrame } from "../assets/items";
 import { bg, floor, hero, icon, panel, text, go, COLOR } from "../ui";
+import { DIFFICULTY_BY_ID } from "@shared/difficulty";
 
 /**
  * Hub that walks through the recipe steps. Launches each minigame on top of
@@ -28,7 +29,9 @@ export class KitchenScene extends Phaser.Scene {
 
     panel(this, 180, 50, 320, 64, "panel");
     text(this, 180, 42, recipe.name.toUpperCase().slice(0, 24), 9, COLOR.pink);
-    text(this, 180, 64, `step ${run.stepIndex + 1} / ${recipe.steps.length}`, 7, COLOR.muted);
+    const diff = DIFFICULTY_BY_ID[run.difficulty];
+    text(this, 180, 64, `step ${run.stepIndex + 1} / ${recipe.steps.length}  ·  ${diff?.label ?? ""}`, 7, COLOR.muted);
+    if (diff) this.add.image(312, 50, `diff_${diff.id}`).setScale(1.5);
 
     // Step dots.
     recipe.steps.forEach((_, i) => {

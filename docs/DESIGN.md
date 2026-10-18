@@ -91,6 +91,14 @@ arbitrary recipes playable.
 | Art | Aseprite, 32x32, one shared palette, texture atlas via free-tex-packer |
 | Font | Own bitmap font, `tools/font/build.py` |
 
+### Difficulty (added 2026-10-18)
+
+Five levels picked after choosing a dish (`DifficultyScene`, portraits in `public/assets/difficulty/`):
+easy, moderate, hard, extra hard, impossible. `shared/difficulty.ts` holds the multipliers; `BaseMinigame`
+scales counts, rotations and seconds centrally and multiplies the score by the level's bonus, and each input
+base scales its own timing windows by `difficulty.tolerance` and marker speeds by `difficulty.speed`.
+The choice persists on the device.
+
 ### Scene structure
 
 ```
