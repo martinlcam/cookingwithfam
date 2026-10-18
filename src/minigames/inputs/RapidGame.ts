@@ -46,7 +46,7 @@ export class RapidGame extends BaseMinigame {
   override update(t: number, dt: number) {
     super.update(t, dt);
     if (!this.bar || this.heat >= 1) return;
-    this.heat = Math.max(0, this.heat - (0.12 * dt) / 1000);
+    this.heat = Math.max(0, this.heat - (0.12 * this.difficulty.speed * dt) / 1000);
     this.bar.set(this.heat);
   }
 }

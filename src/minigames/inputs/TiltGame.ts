@@ -28,6 +28,9 @@ export class TiltGame extends BaseMinigame {
   setup() {
     this.flicks = 0;
     const need = this.params.count ?? 4;
+    // Harder levels want a longer, snappier flick.
+    const minLen = Math.min(200, 60 / this.difficulty.tolerance);
+    const maxMs = Math.max(150, 350 * this.difficulty.tolerance);
     panel(this, 180, 380, 310, 150, "board");
     this.vessel = item(this, 180, 390, this.cfg.vessel, 5);
     this.bits = [0, 1, 2].map((i) => item(this, 160 + i * 20, 370, itemFrame(this.step.item), 2).setDepth(1));
@@ -40,8 +43,8 @@ export class TiltGame extends BaseMinigame {
     });
     this.input.on("pointerup", (p: Phaser.Input.Pointer) => {
       const dx = p.worldX - sx, dy = p.worldY - sy, ms = p.upTime - st;
-      const fast = ms < 350;
-      const ok = this.cfg.axis === "up" ? dy < -60 && fast : Math.abs(dx) > 60 && fast;
+      const fast = ms < maxMs;
+      const ok = this.cfg.axis === "up" ? dy < -minLen && fast : Math.abs(dx) > minLen && fast;
       if (!ok) return;
       this.flicks += 1;
       sfx.play(this.cfg.axis === "up" ? "flip" : "splash");

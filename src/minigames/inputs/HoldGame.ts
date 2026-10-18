@@ -72,7 +72,7 @@ export class HoldGame extends BaseMinigame {
   override update(t: number, dt: number) {
     super.update(t, dt);
     if (this.fired || !this.bar) return;
-    const rate = this.cfg.mode === "watch" ? 1 / Math.max(2, this.seconds * 0.8) : 0.5;
+    const rate = (this.cfg.mode === "watch" ? 1 / Math.max(2, this.seconds * 0.8) : 0.5) * this.difficulty.speed;
     if (this.cfg.mode === "watch" || this.holding) this.fill = Math.min(1.2, this.fill + (rate * dt) / 1000);
     this.bar.set(this.fill);
     this.contents.setScale(1.2 + this.fill * 0.4);
@@ -85,7 +85,7 @@ export class HoldGame extends BaseMinigame {
     this.holding = false;
     this.stopLoop();
     const diff = Math.abs(this.fill - target);
-    const tol = this.cfg.tolerance ?? 0.06;
+    const tol = (this.cfg.tolerance ?? 0.06) * this.difficulty.tolerance;
     const result = diff <= tol ? 1 : Math.max(0, 1 - (diff - tol) * 3);
     if (result < 1) this.cameras.main.shake(120, 0.006);
     sfx.play(result === 1 ? "ok" : "miss");

@@ -31,7 +31,7 @@ export class PlaceGame extends BaseMinigame {
   setup() {
     this.placed = 0;
     const need = this.params.count ?? 4;
-    const r = this.cfg.radius ?? 50;
+    const r = Math.max(20, (this.cfg.radius ?? 50) * this.difficulty.tolerance);
     panel(this, 180, 380, 310, 150, "board");
     item(this, this.tx, this.ty + 15, this.cfg.target, 5);
     const dishMode = this.cfg.subject === "dish";

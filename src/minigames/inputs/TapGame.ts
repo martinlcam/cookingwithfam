@@ -41,7 +41,7 @@ export class TapGame extends BaseMinigame {
     this.pos = 0;
     this.dir = 1;
     const need = this.params.count ?? 3;
-    const zone = this.cfg.zone ?? 0.22;
+    const zone = Math.min(0.9, (this.cfg.zone ?? 0.22) * this.difficulty.tolerance);
 
     panel(this, 180, 380, 310, 150, "board");
     item(this, 180, 380, this.cfg.vessel, 5);
@@ -80,7 +80,7 @@ export class TapGame extends BaseMinigame {
   override update(t: number, dt: number) {
     super.update(t, dt);
     if (!this.marker) return;
-    const speed = (this.cfg.speed ?? 0.9) + this.hits * 0.15;
+    const speed = ((this.cfg.speed ?? 0.9) + this.hits * 0.15) * this.difficulty.speed;
     this.pos += (this.dir * speed * dt) / 1000;
     if (this.pos > 1) {
       this.pos = 1;
